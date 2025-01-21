@@ -6,17 +6,12 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    public GameObject card;
-    public Transform[] spawnPoint;
-    public float fixedScale = 1.0f;
-
-    void Awake()
-    {
-        spawnPoint = GetComponentsInChildren<Transform>().Where(t => t != transform).ToArray();
-    }
+    public GameObject card; // "Card" 프리팹 사용
+    public Transform[] spawnPoint; //스폰위치 배열
 
     void Start()
     {
+        spawnPoint = GetComponentsInChildren<Transform>().Where(t => t != transform).ToArray();
         Spawn();
     }
 
@@ -40,7 +35,7 @@ public class Board : MonoBehaviour
 
         //for (int i = 0; i < spawnPoint.Length; i++)
         //{
-        //    GameObject newCard = Instantiate(card, spawnPoint[i].position, Quaternion.identity);
+        //    GameObject newCard = Instantiate(card, spawnPoint[i].position, Quaternion.identity,transform);
         //    newCard.GetComponent<Card>().Setting(arr2[i]);
         //}
 
@@ -50,7 +45,7 @@ public class Board : MonoBehaviour
 
         //for (int i = 0; i < spawnPoint.Length; i++)
         //{
-        //    GameObject newCard = Instantiate(card, spawnPoint[i].position, Quaternion.identity);
+        //    GameObject newCard = Instantiate(card, spawnPoint[i].position, Quaternion.identity,transform);
         //    newCard.GetComponent<Card>().Setting(arr3[i]);
         //}
 

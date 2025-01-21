@@ -5,11 +5,9 @@ using UnityEngine;
 
 public class User : MonoBehaviour
 {
-    public int index;
+    public int index; //User 값
     public GameObject Live; // 유저가 총에 맞기 전 
     public GameObject Death;// 유저가 총에 맞은 후
-
-    bool isLive = true;
 
 
     void Awake()

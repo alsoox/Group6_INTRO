@@ -15,22 +15,6 @@ public class Card : MonoBehaviour
 
     public SpriteRenderer frontImage;
 
-    void Awake()
-    {
-    
-    }
-
-    void Start()
-    {
-       
-    }
-
-  
-    void Update()
-    {
-        
-    }
-
     public void Setting(int number)
     {
         idx = number;
