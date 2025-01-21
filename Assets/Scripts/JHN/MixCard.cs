@@ -9,7 +9,17 @@ public class MixCard : MonoBehaviour
 
     public void Start()
     {
-        frontImage = this.GetComponent<SpriteRenderer>();
+        //// 스프라이트 연결해줄때 사용함
+        //Transform frontTransform = transform.GetChild(0); // 첫 번째 자식
+        //frontImage = frontTransform.GetComponent<SpriteRenderer>();
+
+        //Transform frontTransform2 = transform.GetChild(1); // 첫 번째 자식
+        //SpriteRenderer frontSpriteRenderer = frontTransform2.GetComponent<SpriteRenderer>();
+        //frontSpriteRenderer.sprite = Resources.Load<Sprite>($"CardBack");
+
+        //// 스프라이트 랜더러 삭제할 때 사용
+        //SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        //Destroy(spriteRenderer);
     }
     public void Setting(int idx, int round)
     {
