@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,12 +11,17 @@ public class GameManager : MonoBehaviour
     public Card firstCard;
     public Card secondCard;
 
-    int totalBullet = 6;
+    public GameObject nextStageBtn;
+    public GameObject mainBtn;
+    public GameObject endingBtn;
+
+    int count = 5; // 매칭 횟수 - stage 1,2 : 5 , stage 3 : 10
+    int health = 5;
+    int totalChance = 6; // 러시안룰렛 기회
 
     public Animator successAnim; //카드 매칭 시 에디메이션추가
 
     float time;
-    bool isGameOver = false;
 
     void Awake()
     {
@@ -28,20 +35,30 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
     }
-
-    
+  
     void Update()
     {
         time += Time.deltaTime;
     }
 
-    public void Matched() 
+    public void Matched() // 카드 매칭 하기
     {
         if (firstCard.idx == secondCard.idx) // 매칭 한 카드가 같을 경우
         {
-             firstCard.DestoryCard();
-             secondCard.DestoryCard();
-             //successAnim.SetBool("isSuccess", true); // 카드 매칭 성공 anim
+            firstCard.DestoryCard();
+            secondCard.DestoryCard();
+
+            if (firstCard.idx != 5)
+            {
+                count--;
+            }
+
+            if (count == 0)
+            {
+                GameClear();
+            }
+
+            Debug.Log(count);
         }
 
         else if (firstCard.idx != secondCard.idx)
@@ -62,9 +79,41 @@ public class GameManager : MonoBehaviour
 
     public void MiniGame() // 러시안 룰렛
     {
-        if (Random.Range(0, totalBullet) == 0)
+        Shoot();
+
+        if (health == 0)
         {
-            
+            GameOver();
         }
+
+        Debug.Log(totalChance);
+        Debug.Log(health);
+
+    }
+
+    public void Shoot() // 총알 다썼을때는? 
+    {
+        if (Random.Range(0, totalChance) == 0) // 격발 성공
+        {
+            health--;
+            totalChance = 6;
+            //user 죽이기
+        }
+        else // 격발 실패
+        {
+            totalChance--;
+        }
+    }
+
+    public void GameClear()
+    { 
+        mainBtn.SetActive(true);
+        nextStageBtn.SetActive(true);
+        endingBtn.SetActive(true);
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("EndingScene");
     }
 }

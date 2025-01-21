@@ -5,18 +5,24 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    public int idx = 0;
+    public int idx;
+    public int squareSize = 1;
 
     public GameObject front; // 카드 앞면 이미지 스프라이트 추가
     public GameObject back;  // 카드 뒷면 이미지 스프라이트 추가
 
     public Animator cardOpenAnim;//카드오픈 에디메이션추가
 
-    SpriteRenderer frontImage;
+    public SpriteRenderer frontImage;
+
+    void Awake()
+    {
+    
+    }
 
     void Start()
     {
-        
+       
     }
 
   
@@ -28,8 +34,10 @@ public class Card : MonoBehaviour
     public void Setting(int number)
     {
         idx = number;
-        //frontImage.sprite = Resources.Load<Sprite>($"User{idx}"); // 확인 필요 스테이지 별 변경
+        //frontImage.sprite = Resources.Load<Sprite>($"UserPicture/Stage1_{idx}"); // 확인 필요 스테이지 1 스테이지 변경 필요
+ 
     }
+
 
     public void OpenCard() 
     {
@@ -69,6 +77,4 @@ public class Card : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-
 }
