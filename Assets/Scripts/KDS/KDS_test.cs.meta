@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Scripts/SoonJong/User.cs.meta
-<<<<<<<< HEAD:Assets/Scripts/SoonJong/User.cs.meta
-guid: ff8decbb6e764004aa90094b5a2e0a97
-========
-guid: 4e053362f1d492547a0aabb83e234103
->>>>>>>> parent of 4dbb169 (Main 수정사항 Merge(?)):Assets/Scripts/KDS/GameManager.cs.meta
-=======
 guid: 64b4489f49adc8e4c8ada257df841a40
->>>>>>> parent of 02a15c6 (Main 수정사항 2 Merge(?)):Assets/Scripts/KDS/KDS_test.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

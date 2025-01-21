@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/SoonJong/Board.cs.meta
-guid: 16c8d1d6c23919746a3dedce300af7c0
-========
 guid: e1efa9c2aa6cc274c94c0795e7274837
->>>>>>>> parent of 4dbb169 (Main 수정사항 Merge(?)):Assets/Scripts/KDS/AudioManager.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
