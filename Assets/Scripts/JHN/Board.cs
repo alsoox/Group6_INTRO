@@ -9,6 +9,7 @@ public class Board : MonoBehaviour
     public GameObject card;
     public GameObject[] cardGroup;
     private GameObject nowCardGroup;
+
     public int round = 1;
     private int[] arr;
 
@@ -25,22 +26,32 @@ public class Board : MonoBehaviour
             int[] round1 = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 10, 10, 10, 10, 10 };
             round1 = round1.OrderBy(x => Random.Range(0f, 5f)).ToArray();
             arr = round1;
-            nowCardGroup = cardGroup[0];
+
+            int g = Random.Range(0, 3);
+            nowCardGroup = cardGroup[g];
+
         }
         if (curRound == 2)
         {
             int[] round2 = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 10, 10, 10, 10, 10, 10, 10 };
             round2 = round2.OrderBy(x => Random.Range(0f, 5f)).ToArray();
             arr = round2;
-            nowCardGroup = cardGroup[1];
+
+            int g = Random.Range(3, 6);
+            nowCardGroup = cardGroup[g];
         }
         if (curRound == 3)
         {
             int[] round3 = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
             round3 = round3.OrderBy(x => Random.Range(0f, 5f)).ToArray();
             arr = round3;
-            nowCardGroup = cardGroup[2];
+
+            int g = Random.Range(6, 9);
+            nowCardGroup = cardGroup[g];
         }
+
+
+
         nowCardGroup.SetActive(true);
 
         // CardGroup0의 자식들에 해당하는 카드 위치 배열을 가져오기
