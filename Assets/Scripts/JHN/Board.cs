@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Burst.Intrinsics;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class Board : MonoBehaviour
@@ -10,16 +11,41 @@ public class Board : MonoBehaviour
     public GameObject[] cardGroup;
     private GameObject nowCardGroup;
 
+
+    public GameObject[] cards; // 카드들이 담긴 배열
+    public Vector3[] targetPositions; // 카드들이 이동할 목표 위치
+
     public int round = 1;
     private int[] arr;
 
     void Start()
     {
-        RandomCards(round);
-
+        //RandomCards(round);
     }
 
-    void RandomCards(int curRound)
+    private IEnumerator AnimateCardsToPosition()    //카드 애니메이션
+    {
+        float moveDuration = 0.05f; // 이동 시간
+        float timeElapsed;
+
+        // 각 카드마다 이동
+        for (int i = 0; i < cards.Length; i++)
+        {
+            Transform cardTransform = cards[i].transform;
+            Vector3 startPosition = cardTransform.position;
+            Vector3 targetPosition = targetPositions[i];
+
+            timeElapsed = 0;
+            while (timeElapsed < moveDuration)
+            {
+                cardTransform.position = Vector3.Lerp(startPosition, targetPosition, timeElapsed / moveDuration);   // 선형보간
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+            cardTransform.position = targetPosition; // (Lerp썼기 때문에)원래 위치로 설정
+        }
+    }
+    public void RandomCards(int curRound)
     {
         if (curRound == 1)
         {
@@ -50,28 +76,37 @@ public class Board : MonoBehaviour
             nowCardGroup = cardGroup[g];
         }
 
-
-
         nowCardGroup.SetActive(true);
 
+        // 카드 및 목표 위치 초기화
+        int cardCount = nowCardGroup.transform.childCount;
+        cards = new GameObject[cardCount];
+        targetPositions = new Vector3[cardCount];
+
+
         // CardGroup0의 자식들에 해당하는 카드 위치 배열을 가져오기
-        for (int i = 0; i < nowCardGroup.transform.childCount; i++)
+        for (int i = 0; i < cardCount; i++)
         {
             // 자식 카드 접근
             Transform child = nowCardGroup.transform.GetChild(i);
-            MixCard mixCard = child.GetComponent<MixCard>();
+            cards[i] = child.gameObject;
 
+            targetPositions[i] = child.position;     // 목표 위치를 현재 카드 위치로 저장
+
+            child.position = new Vector3(0, 0, 0);  // 초기 위치 설정
+
+            MixCard mixCard = child.GetComponent<MixCard>();
 
             if (curRound == 3) //라운드 3일땐 따로
             {
                 if (arr[i] <= 4)
                 {
-                    mixCard.Setting(arr[i], 3);  // 일반 카드
+                    mixCard.Setting(arr[i], 3);  // 일반 카드 (_3)
                 }
                 else if (arr[i] <= 9)
                 {
                     int a = arr[i] - 5;
-                    mixCard.Setting(a, 4);  // 일반 카드
+                    mixCard.Setting(a, 4);  // 일반 카드 (_4)
                 }
                 else
                 {
@@ -81,14 +116,13 @@ public class Board : MonoBehaviour
             }
             else
             {
-                // 일반 카드 또는 폭탄 카드 세팅
                 if (arr[i] != 10)
                     mixCard.Setting(arr[i], round);  // 일반 카드
                 else
                     mixCard.Setting();  // 폭탄 카드
-
             }
 
         }
+        StartCoroutine(AnimateCardsToPosition());   // 카드들의 목표 위치를 설정한 후, 애니메이션 시작
     }
 }
