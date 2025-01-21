@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/SoonJong/Card.cs.meta
+<<<<<<<< HEAD:Assets/Scripts/SoonJong/Card.cs.meta
+guid: 870c68baff2e94f44a91cf85f2364f4a
+========
+guid: 0d8ac3e0f76e2464ea58183f7371a170
+>>>>>>>> parent of 4dbb169 (Main 수정사항 Merge(?)):Assets/Scripts/KDS/Borad.cs.meta
+=======
+guid: 5a463bcecf0de0a40a11d4a9efe5919c
+>>>>>>> parent of 02a15c6 (Main 수정사항 2 Merge(?)):Assets/Scripts/KDS/CircleFiller.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
