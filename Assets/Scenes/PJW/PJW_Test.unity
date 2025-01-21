@@ -3714,16 +3714,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rankingTexts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2086471869}
+  - {fileID: 402614808}
+  - {fileID: 1341776277}
+  - {fileID: 856053899}
+  - {fileID: 2093150589}
+  - {fileID: 658504760}
+  - {fileID: 1885445208}
+  - {fileID: 1134658905}
+  - {fileID: 186255239}
+  - {fileID: 1592868621}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

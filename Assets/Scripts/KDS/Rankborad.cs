@@ -23,7 +23,7 @@ public class Rankborad : MonoBehaviour
 
     public Text[] rankingTexts = new Text[10];  // Text UI 배열 (1~10등을 표시할 텍스트)
     private RankingList rankingList;
-    private string jsonFilePath = "Assets/Resources/JSON/Rank.json";  // JSON 파일 경로
+    private string jsonFilePath = "Assets/Resources/Json/Rank.json";  // JSON 파일 경로
 
     void Start()
     {
