@@ -9,9 +9,12 @@ public class GameManager : MonoBehaviour
     public Card firstCard;
     public Card secondCard;
 
+    int totalBullet = 6;
+
     public Animator successAnim; //Ä«µå ¸ÅÄª ½Ã ¿¡µð¸ÞÀÌ¼ÇÃß°¡
 
     float time;
+    bool isGameOver = false;
 
     void Awake()
     {
@@ -45,7 +48,7 @@ public class GameManager : MonoBehaviour
         {
             if (firstCard.idx == 5)//ÆøÅºÀÏ °æ¿ì
             {
-                
+                MiniGame();
             }
 
             firstCard.CloseCard();
@@ -55,5 +58,13 @@ public class GameManager : MonoBehaviour
 
         firstCard = null;
         secondCard = null;
+    }
+
+    public void MiniGame() // ·¯½Ã¾È ·ê·¿
+    {
+        if (Random.Range(0, totalBullet) == 0)
+        {
+            
+        }
     }
 }
