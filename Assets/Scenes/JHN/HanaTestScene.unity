@@ -17801,6 +17801,8 @@ MonoBehaviour:
   - {fileID: 887114560}
   - {fileID: 1312331857}
   - {fileID: 1594765691}
+  cards: []
+  targetPositions: []
   round: 0
 --- !u!1 &1881394761
 GameObject:

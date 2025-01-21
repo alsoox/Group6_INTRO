@@ -41,7 +41,7 @@ public class MixCard : MonoBehaviour
         float scaleRatio = Mathf.Min(widthRatio, heightRatio);
 
         // 스프라이트의 크기 조정
-        frontImage.transform.localScale = new Vector3(scaleRatio, scaleRatio, 1);
+        frontImage.transform.localScale = new Vector3(widthRatio, heightRatio, 1);
     }
 
 }
