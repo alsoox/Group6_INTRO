@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 485640506}
   - component: {fileID: 485640505}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -939,7 +939,7 @@ Transform:
   m_GameObject: {fileID: 557131001}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.49, y: 1.204, z: 0.603}
+  m_LocalPosition: {x: 0.6, y: 1.204, z: 0.603}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1345,7 +1345,7 @@ Transform:
   m_GameObject: {fileID: 1192086519}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.719, y: 1.204, z: 0.603}
+  m_LocalPosition: {x: -0.6, y: 1.204, z: 0.603}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1451,7 +1451,7 @@ Transform:
   m_GameObject: {fileID: 1341196798}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.224, y: 1.204, z: 0.603}
+  m_LocalPosition: {x: 1.2, y: 1.204, z: 0.603}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1557,7 +1557,7 @@ Transform:
   m_GameObject: {fileID: 1351983187}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.148, y: 1.204, z: 0.603}
+  m_LocalPosition: {x: -1.2, y: 1.204, z: 0.603}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1973,7 +1973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1491709064}
   m_Layer: 0
-  m_Name: --------------- (1)
+  m_Name: ---------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2215,7 +2215,7 @@ Transform:
   m_GameObject: {fileID: 1508700576}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.122, y: 1.204, z: 0.603}
+  m_LocalPosition: {x: 0, y: 1.204, z: 0.603}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2634,19 +2634,19 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1341196801}
-  - {fileID: 1351983190}
-  - {fileID: 1508700579}
-  - {fileID: 557131004}
-  - {fileID: 1484316777}
   - {fileID: 287513207}
-  - {fileID: 1794331042}
-  - {fileID: 157963193}
-  - {fileID: 485640508}
   - {fileID: 1753779415}
-  - {fileID: 1192086522}
+  - {fileID: 157963193}
   - {fileID: 1491709064}
-  - {fileID: 754650796}
+  - {fileID: 1484316777}
+  - {fileID: 1794331042}
+  - {fileID: 485640508}
   - {fileID: 901991735}
   - {fileID: 423675770}
   - {fileID: 518869362}
+  - {fileID: 754650796}
+  - {fileID: 1351983190}
+  - {fileID: 1192086522}
+  - {fileID: 1508700579}
+  - {fileID: 557131004}
+  - {fileID: 1341196801}
