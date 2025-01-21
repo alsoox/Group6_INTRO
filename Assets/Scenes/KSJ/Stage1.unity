@@ -221,8 +221,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  Live: {fileID: 0}
-  Death: {fileID: 0}
 --- !u!1 &25352262
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,8 +351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  Live: {fileID: 0}
-  Death: {fileID: 0}
 --- !u!114 &48811614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,8 +364,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  Live: {fileID: 0}
-  Death: {fileID: 0}
 --- !u!1 &76808215
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,8 +541,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  Live: {fileID: 0}
-  Death: {fileID: 0}
 --- !u!1 &82762776
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,7 +1369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 826893625}
-  - component: {fileID: 826893626}
+  - component: {fileID: 826893624}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -1385,6 +1377,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &826893624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826893623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c8d1d6c23919746a3dedce300af7c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 3161445612461212103, guid: ba59b427aea570943b37c1b43bf644f0, type: 3}
+  spawnPoint: []
+  fixedScale: 1
 --- !u!4 &826893625
 Transform:
   m_ObjectHideFlags: 0
@@ -1415,20 +1422,6 @@ Transform:
   - {fileID: 1542078745}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &826893626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 826893623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f57f7c1351b984eb6f703c65cc49d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  card: {fileID: 3161445612461212103, guid: ba59b427aea570943b37c1b43bf644f0, type: 3}
-  spawnPoint: []
 --- !u!1 &878184320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,8 +1674,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  Live: {fileID: 0}
-  Death: {fileID: 0}
 --- !u!1 &1148143202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1808,7 +1799,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
-  score: 0
   nextStageBtn: {fileID: 149566947}
   mainBtn: {fileID: 668029336}
   endingBtn: {fileID: 593627843}
@@ -1973,8 +1963,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  Live: {fileID: 0}
-  Death: {fileID: 0}
 --- !u!1 &1712134333
 GameObject:
   m_ObjectHideFlags: 0
