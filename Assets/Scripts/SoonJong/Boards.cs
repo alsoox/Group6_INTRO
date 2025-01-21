@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using UnityEngine;
 
-public class Board : MonoBehaviour
+public class Boards : MonoBehaviour
 {
     public GameObject card; // "Card" 프리팹 사용
     public Transform[] spawnPoint; //스폰위치 배열
