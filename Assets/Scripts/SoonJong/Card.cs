@@ -34,7 +34,7 @@ public class Card : MonoBehaviour
     public void Setting(int number)
     {
         idx = number;
-        //frontImage.sprite = Resources.Load<Sprite>($"UserPicture/Stage1_{idx}"); // 확인 필요 스테이지 1 스테이지 변경 필요
+        frontImage.sprite = Resources.Load<Sprite>($"UserPicture/Stage1_{idx}"); // 확인 필요 스테이지 1 스테이지 변경 필요
  
     }
 

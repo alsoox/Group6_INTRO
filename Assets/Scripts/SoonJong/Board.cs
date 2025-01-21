@@ -8,6 +8,7 @@ public class Board : MonoBehaviour
 {
     public GameObject card;
     public Transform[] spawnPoint;
+    public float fixedScale = 1.0f;
 
     void Awake()
     {
@@ -30,6 +31,8 @@ public class Board : MonoBehaviour
             GameObject newCard = Instantiate(card, spawnPoint[i].position, Quaternion.identity,transform);
             newCard.GetComponent<Card>().Setting(arr1[i]);
         }
+
+
 
         ////2stage
         //int[] arr2 = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 5, 5, 5, 5 }; //stage - 2±‚¡ÿ(10 User / 7 Bomb)

@@ -48,29 +48,28 @@ public class GameManager : MonoBehaviour
             firstCard.DestoryCard();
             secondCard.DestoryCard();
 
-            if (firstCard.idx != 5)
+            if (firstCard.idx != 5 || secondCard.idx != 5)
             {
                 count--;
             }
 
             if (count == 0)
             {
-                GameClear();
+                GameClear();// 다음스테이지 또는 
             }
 
-            Debug.Log(count);
+            Debug.Log($"매칭성공수{count}");
         }
 
         else if (firstCard.idx != secondCard.idx)
         {
-            if (firstCard.idx == 5)//폭탄일 경우
+            if (firstCard.idx == 5 || secondCard.idx == 5)//폭탄일 경우
             {
                 MiniGame();
             }
 
             firstCard.CloseCard();
             secondCard.CloseCard();
-
         }
 
         firstCard = null;
@@ -83,11 +82,11 @@ public class GameManager : MonoBehaviour
 
         if (health == 0)
         {
-            GameOver();
+            //GameOver();
         }
 
-        Debug.Log(totalChance);
-        Debug.Log(health);
+        Debug.Log($"총알남은수{totalChance}");
+        Debug.Log($"산사람수{health}");
 
     }
 
@@ -98,6 +97,7 @@ public class GameManager : MonoBehaviour
             health--;
             totalChance = 6;
             //user 죽이기
+            Debug.Log("한명죽었다");
         }
         else // 격발 실패
         {
@@ -112,8 +112,8 @@ public class GameManager : MonoBehaviour
         endingBtn.SetActive(true);
     }
 
-    public void GameOver()
-    {
-        SceneManager.LoadScene("EndingScene");
-    }
+    //public void GameOver() // 게임종료
+    //{
+    //    SceneManager.LoadScene("EndingScene");
+    //}
 }
