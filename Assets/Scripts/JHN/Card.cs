@@ -72,7 +72,7 @@ public class Card : MonoBehaviour
 
     void DestoryCardInvoke()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void CloseCard()
