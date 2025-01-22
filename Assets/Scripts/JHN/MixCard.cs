@@ -1,21 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MixCard : MonoBehaviour
 {
     public SpriteRenderer frontImage;
+    Transform frontTransform;
+
     private string[] spritePrefixes = { "JHN_", "KDS_", "KSJ_", "SHC_", "PJW_", "BANG" };
 
     public void Start()
     {
-        //// 스프라이트 연결해줄때 사용함
-        //Transform frontTransform = transform.GetChild(0); // 첫 번째 자식
-        //frontImage = frontTransform.GetComponent<SpriteRenderer>();
+        // 시작할 때 앞 비활성화 & 버튼 설정
+        frontTransform = transform.GetChild(0); // 첫 번째 자식 == Front
+        frontImage = frontTransform.GetComponent<SpriteRenderer>();
+        frontTransform.gameObject.SetActive(false); //비활성화
+        // frontImage = this.GetComponent<SpriteRenderer>();
 
-        //Transform frontTransform2 = transform.GetChild(1); // 첫 번째 자식
-        //SpriteRenderer frontSpriteRenderer = frontTransform2.GetComponent<SpriteRenderer>();
-        //frontSpriteRenderer.sprite = Resources.Load<Sprite>($"CardBack");
+
+        Transform frontTransform2 = transform.GetChild(1); // 두 번째 자식 == Back
+       // SpriteRenderer frontSpriteRenderer = frontTransform2.GetComponent<SpriteRenderer>();
+
+        // 버튼 오브젝트 생성
+        GameObject buttonObject = new GameObject("Button");
+        buttonObject.transform.SetParent(frontTransform2); // Back 밑에 버튼
+
+        // RectTransform 설정
+        RectTransform rectTransform = buttonObject.AddComponent<RectTransform>();
+        rectTransform.localPosition = Vector3.zero; // 버튼 위치 초기화
+        rectTransform.sizeDelta = new Vector2(0.8f, 1.5f); // 버튼 크기 설정
+
+
+
+        // Button 컴포넌트 추가
+        Button button = buttonObject.AddComponent<Button>();
 
         //// 스프라이트 랜더러 삭제할 때 사용
         //SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
