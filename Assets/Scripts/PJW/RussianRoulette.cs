@@ -80,7 +80,7 @@ public class RussianRoulette : MonoBehaviour
 
         // ÃÑ¾ËÀÌ ³ª°¬À»¶§ ¾È³ª°¬À»¶§
         if(_isShoot){
-            Debug.Log("ÅÁ");
+            SoundManager.instance.PlaySFX("fire");
             
             m_light.color = Color.red * 2f;
 
@@ -100,11 +100,12 @@ public class RussianRoulette : MonoBehaviour
             m_blood.gameObject.SetActive(false);
             m_blood.alpha = 1;
         } else {
+            SoundManager.instance.PlaySFX("fall");
             Debug.Log("ÂûÄ¬..!");
             
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         person.SetBool("Scared", false);
     }
     
