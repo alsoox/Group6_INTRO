@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public GameObject User3;
     public GameObject User4;
 
+    
+
     //public GameObject nextStageBtn;
     //public GameObject mainBtn;
     //public GameObject endingBtn;
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour
 
             if (count == 0) //매칭 완료 클리어
             {
-                Debug.Log("클리어!!");
+                Debug.Log($"클리어!! {health}명생존!!");
                 RoundClear();
             }
         }
@@ -110,15 +112,50 @@ public class GameManager : MonoBehaviour
     {
         if (Random.Range(0, totalChance) == 0) // 격발 성공
         {
-            health--;
+            Discoundhealth();
             totalChance = 6;
+            GameObject[] users = { User0, User1, User2, User3, User4 };
+
             //user 죽이기
+
+            if (firstCard.index != 10)
+            {
+                users[firstCard.index].SetActive(false);
+            }
+            else if( secondCard.index != 10)
+            {
+                users[secondCard.index].SetActive(false);
+            }
+
             Debug.Log("한명죽었다");
         }
         else 
         {
             totalChance--; // 격발 실패 시 총알감소
         }
+    }
+
+    public void Discoundhealth() // 살아있는사람 수 차감 
+    {
+        GameObject[] users = { User0, User1, User2, User3, User4 };
+
+        int activeUserCount = 0;
+
+        foreach (var user in users)
+        {
+            if (user.activeSelf)
+            {
+                activeUserCount++;
+            }
+        }
+        Debug.Log($"산사람 {activeUserCount} 목숨{health}");
+        //목숨이 같고 누른사람이 중복이 안되면 목숨차감
+        if (activeUserCount == health)
+        {
+            health--;
+        }
+
+        
     }
 
     public void RoundClear()
