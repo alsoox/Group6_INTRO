@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PJW_1_0
+      name: PJW_1_1
       rect:
         serializedVersion: 2
         x: 0
@@ -156,6 +156,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: PJW_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 354
+        height: 472
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8896fa5f85a5e3648b76f6bad0fd1bb1
+      internalID: 377354917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -167,7 +188,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PJW_1_0: -572109804
+      PJW_1_0: 377354917
+      PJW_1_1: -572109804
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
