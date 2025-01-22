@@ -7,6 +7,8 @@ public class MixCard : MonoBehaviour
 {
     public SpriteRenderer frontImage;
     Transform frontTransform;
+    Transform frontTransform2;
+    public int index;
 
     private string[] spritePrefixes = { "JHN_", "KDS_", "KSJ_", "SHC_", "PJW_", "BANG" };
 
@@ -19,23 +21,8 @@ public class MixCard : MonoBehaviour
         // frontImage = this.GetComponent<SpriteRenderer>();
 
 
-        Transform frontTransform2 = transform.GetChild(1); // 두 번째 자식 == Back
+        frontTransform2 = transform.GetChild(1); // 두 번째 자식 == Back
        // SpriteRenderer frontSpriteRenderer = frontTransform2.GetComponent<SpriteRenderer>();
-
-        // 버튼 오브젝트 생성
-        GameObject buttonObject = new GameObject("Button");
-        buttonObject.transform.SetParent(frontTransform2); // Back 밑에 버튼
-
-        // RectTransform 설정
-        RectTransform rectTransform = buttonObject.AddComponent<RectTransform>();
-        rectTransform.localPosition = Vector3.zero; // 버튼 위치 초기화
-        rectTransform.sizeDelta = new Vector2(0.8f, 1.5f); // 버튼 크기 설정
-
-
-
-        // Button 컴포넌트 추가
-        Button button = buttonObject.AddComponent<Button>();
-
         //// 스프라이트 랜더러 삭제할 때 사용
         //SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         //Destroy(spriteRenderer);
@@ -71,6 +58,47 @@ public class MixCard : MonoBehaviour
 
         // 스프라이트의 크기 조정
         frontImage.transform.localScale = new Vector3(widthRatio, heightRatio, 1);
+    }
+
+
+    //Card
+    public void DestoryCard()
+    {
+        Invoke("DestoryCardInvoke", 0.5f);
+    }
+
+    void DestoryCardInvoke()
+    {
+        Destroy(gameObject);
+    }
+
+    public void CloseCard()
+    {
+        Invoke("CloseCardInvoke", 0.5f);
+    }
+
+    void CloseCardInvoke()
+    {
+        //cardOpenAnim.SetBool("isClose".true); //CardClose anim 추가
+        frontTransform.gameObject.SetActive(false);
+    }
+
+    public void OpenCard()
+    {
+        //cardOpenAnim.SetBool("isOpen".true); // CardOpen anim 추가
+        frontTransform.gameObject.SetActive(true);
+        frontTransform2.gameObject.SetActive(false);
+
+        if (GameManager.Instance.firstCard == null)
+        {
+            GameManager.Instance.firstCard = this;
+        }
+        else
+        {
+            GameManager.Instance.secondCard = this;
+            GameManager.Instance.Matched();
+        }
+
     }
 
 }

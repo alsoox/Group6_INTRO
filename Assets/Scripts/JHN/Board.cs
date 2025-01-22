@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Burst.Intrinsics;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Board : MonoBehaviour
@@ -57,7 +58,7 @@ public class Board : MonoBehaviour
             nowCardGroup = cardGroup[g];
 
         }
-        if (curRound == 2)
+        else if (curRound == 2)
         {
             int[] round2 = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 10, 10, 10, 10, 10, 10, 10 };
             round2 = round2.OrderBy(x => Random.Range(0f, 5f)).ToArray();
@@ -66,7 +67,7 @@ public class Board : MonoBehaviour
             int g = Random.Range(3, 6);
             nowCardGroup = cardGroup[g];
         }
-        if (curRound == 3)
+        else if (curRound == 3)
         {
             int[] round3 = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
             round3 = round3.OrderBy(x => Random.Range(0f, 5f)).ToArray();
@@ -74,6 +75,10 @@ public class Board : MonoBehaviour
 
             int g = Random.Range(6, 9);
             nowCardGroup = cardGroup[g];
+        }
+        else{
+            Debug.Log("wrong curRound");
+            return;
         }
 
         nowCardGroup.SetActive(true);
@@ -121,7 +126,8 @@ public class Board : MonoBehaviour
                 else
                     mixCard.Setting();  // 폭탄 카드
             }
-
+            if (arr[i] > 4 && arr[i] <= 9) mixCard.index = arr[i] - 5;
+            else mixCard.index = arr[i];
         }
         StartCoroutine(AnimateCardsToPosition());   // 카드들의 목표 위치를 설정한 후, 애니메이션 시작
     }
