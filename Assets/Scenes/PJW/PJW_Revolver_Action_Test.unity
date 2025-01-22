@@ -2930,7 +2930,7 @@ MonoBehaviour:
   m_originRevolverTransform: {fileID: 1164328328}
   m_revolverCameraTransform: {fileID: 1045681882}
   m_tempTransform: {fileID: 110308936}
-  m_isHesitate: 1
+  m_isHesitate: 0
 --- !u!1 &1681764573
 GameObject:
   m_ObjectHideFlags: 0

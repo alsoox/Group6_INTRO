@@ -1,3 +1,4 @@
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +16,8 @@ public class GameManager : MonoBehaviour
     public Card firstCard; // 처음 뒤집은 카드
     public Card secondCard; // 두번째 뒤집은 카드 
     public GameObject boardObject;
+    public RussianRoulette RussianRouletteAction;
     public int round = 1;
-
     public bool[] isLive = new bool[5] { true, true, true, true, true};
      //jhn : 0 / kds : 1 / ksj : 2 / /shc : 3 / pjw : 4
     int count = 5; // 매칭 남은 횟수  - stage 1,2 : 5 , stage 3 : 10
@@ -92,14 +93,15 @@ public class GameManager : MonoBehaviour
 
     public void MiniGame() // 러시안 룰렛
     {
+        
         //슛은 뒤집은 카드 인덱스 값에 해당하는 isLive가 true 일때
         if(firstCard.index != 10 && isLive[firstCard.index] == true)
         {
-            Shoot();
+            Shoot(firstCard.index);
         }
         else if (secondCard.index != 10 && isLive[secondCard.index] == true)
         {
-            Shoot();
+            Shoot(secondCard.index);
         }
 
         if (health == 0)
@@ -113,28 +115,22 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void Shoot()
+    public void Shoot(int index)
     {
         if (Random.Range(0, totalChance) == 0) // 격발 성공
         {
             health--;
-            totalChance = 6;
+            totalChance = 6;//격발시 총알 횟수 초기화
 
             //user 죽이기(폭탄 제외한 카드에 해당하는 user 죽이기)
-            if (firstCard.index != 10 )
-            {
-                isLive[firstCard.index] = false;
-                Debug.Log($"{firstCard.index} 가 죽었다");
-            }
-            else if( secondCard.index != 10)
-            {
-                isLive[secondCard.index] = false;
-                Debug.Log($"{secondCard.index} 가 죽었다");
-            }
+            isLive[index] = false;
+            RussianRouletteAction.ShootAction(true, index);
+
         }
         else 
         {
             totalChance--; // 격발 실패 시 총알감소
+            RussianRouletteAction.ShootAction(false, index);
         }
     }
 

@@ -99,7 +99,6 @@ public class GamestartControll : MonoBehaviour
         for (int i = 0; i < menuButtons.Length; i++)
         {
             menuButtons[i].localPosition = menuButtonFinalPos[i];
-            Debug.Log(menuButtons[i].localPosition.y);
         }
         for (int i = 0; i < introText.Length; i++)
         {
