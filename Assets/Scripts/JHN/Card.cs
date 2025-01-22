@@ -31,7 +31,8 @@ public class Card : MonoBehaviour
     }
     public void Setting(int idx, int round)
     {
-        frontImage.sprite = Resources.Load<Sprite>($"Picture/{spritePrefixes[idx]}{round}");
+        Sprite[] sprites = Resources.LoadAll<Sprite>($"Picture/{spritePrefixes[idx]}{round}");
+        frontImage.sprite = sprites[1];
         FitSpriteToCard();
     }
     public void Setting()
