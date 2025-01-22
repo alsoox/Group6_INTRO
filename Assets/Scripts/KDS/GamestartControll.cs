@@ -5,12 +5,11 @@ public class GamestartControll : MonoBehaviour
 {
     public RectTransform[] menuButtons; // 메뉴 버튼들
     public RectTransform[] introText;     // INTRO 텍스트들
-    public Camera mainCamera;        
+    public TextIntroEffect introTextEffect;
+    public Camera mainCamera;
     public Vector3[] introTextFinalPos;  // INTRO 텍스트의 최종 위치
     public Vector3[] menuButtonFinalPos; // 메뉴 버튼 최종 위치
-    private Vector3 CameraFinalposition= new Vector3(0, 5, -0.5f); //카메라 최종위치
-    private Quaternion CameraFinalrotation= Quaternion.Euler(90, 0, 0);
-    float CameraFinalfieldofView= 15f;
+    float CameraFinalfieldofView = 15f;
 
     //private Vector3 cameraInitialPos;
     private Vector3[] menuButtonsInitialPos;  // 각 메뉴 버튼의 초기 위치
@@ -18,6 +17,13 @@ public class GamestartControll : MonoBehaviour
     private Vector3 Camerainitposition; //카메라 초기값들
     private Quaternion Camerainitrotation;
     float mainCamerainitfieldofView;
+
+    public Transform m_gameOutCameraPos;
+    public Transform m_gameInCameraPos;
+
+
+
+
     void Start()
     {
         // 초기 카메라와 UI 요소들의 위치 저장
@@ -53,8 +59,6 @@ public class GamestartControll : MonoBehaviour
     {
         float timeElapsed = 0f;
         float animationDuration = 1f;  // 애니메이션 시간
-        Vector3 initilaCameraPos=mainCamera.transform.position;
-        Quaternion initialCameraLot=mainCamera.transform.rotation;
         float initialCamerafiledofView = mainCamera.fieldOfView;
         Debug.Log($"field:{mainCamera.fieldOfView}");
         // 메뉴 버튼들을 아래로 내리기
@@ -64,8 +68,7 @@ public class GamestartControll : MonoBehaviour
             initialMenuPositions[i] = menuButtons[i].localPosition;
         }
         // Intro를 아래로 내리기
-        Vector3[] initialIntroPositions = new Vector3[introText.Length];
-        for (int i = 0; i < introText.Length; i++)
+        Vector3[] initialIntroPositions = new Vector3[introText.Length]; for (int i = 0; i < introText.Length; i++)
         {
             initialIntroPositions[i] = introText[i].localPosition;
         }
@@ -81,6 +84,7 @@ public class GamestartControll : MonoBehaviour
                 menuButtons[i].localPosition = Vector3.Lerp(initialMenuPositions[i], menuButtonFinalPos[i], t);
             }
 
+            introTextEffect.StopCorutine();
             // INTRO 텍스트를 위로 올리기
             for (int i = 0; i < introText.Length; i++)
             {
@@ -88,13 +92,13 @@ public class GamestartControll : MonoBehaviour
             }
 
             // 카메라 이동 
-            mainCamera.transform.position = Vector3.Lerp(initilaCameraPos, CameraFinalposition, t); 
-            mainCamera.transform.rotation = Quaternion.Lerp(initialCameraLot, CameraFinalrotation, t);
+            mainCamera.transform.position = Vector3.Lerp(m_gameOutCameraPos.position, m_gameInCameraPos.position, t);
+            mainCamera.transform.rotation = Quaternion.Lerp(m_gameOutCameraPos.rotation, m_gameInCameraPos.rotation, t);
             mainCamera.fieldOfView = Mathf.Lerp(initialCamerafiledofView, 15f, t);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-       
+
         // 최종적으로 모든 위치를 정확히 맞추기
         for (int i = 0; i < menuButtons.Length; i++)
         {
@@ -105,8 +109,10 @@ public class GamestartControll : MonoBehaviour
             introText[i].localPosition = introTextFinalPos[i];
         }
 
-        mainCamera.transform.position = CameraFinalposition;
-        mainCamera.transform.rotation = CameraFinalrotation;
-        mainCamera.fieldOfView = 15f ;
+        mainCamera.transform.position = m_gameInCameraPos.position;
+        mainCamera.transform.rotation = m_gameInCameraPos.rotation;
+        mainCamera.fieldOfView = 15f;
     }
+
+
 }

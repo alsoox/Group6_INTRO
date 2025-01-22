@@ -28,7 +28,7 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         PlayBGM("Blue_Soul-royalty_free_soul_blues");
-        bgmPlayer.volume = 0.5f; // 브금소리 너무 커서 반으로 줄임
+        // bgmPlayer.volume = 0.5f; // 브금소리 너무 커서 반으로 줄임
     }
 
     private void Init()

@@ -563,7 +563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 29491332}
   m_Layer: 0
-  m_Name: Main Camera Pos
+  m_Name: GameInCameraPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -577,13 +577,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29491331}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.34981257, y: -0, z: -0, w: 0.9368198}
-  m_LocalPosition: {x: 0, y: 2, z: -2}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 5.2, z: -0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &32768158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8860777239565879622, guid: c62fe6d83dc728b4bbb6cdfc5d4434cd, type: 3}
@@ -1139,7 +1139,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2453,7 +2453,7 @@ GameObject:
   - component: {fileID: 287513206}
   - component: {fileID: 287513205}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2498,7 +2498,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -7060,7 +7060,7 @@ Transform:
   m_GameObject: {fileID: 743535485}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 1.204, z: 0.603}
+  m_LocalPosition: {x: 1.2, y: 1.204, z: 0.603}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8190,7 +8190,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.473
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8503,9 +8503,9 @@ MonoBehaviour:
   m_canvasGroup: {fileID: 293678778}
   m_contentText: {fileID: 564122108}
   m_contextList:
-  - "\uAC8C\uC784\uC744 \uC88B\uC544\uD558\uB294 \uACF5\uC0C1\uC7C1\uC774 \uC720\uB2C8\uD2F0
-    7\uAE30 \uAE40\uB3D9\uC11D\uC785\uB2C8\uB2E4. "
-  - "<MBTI : E?NTJ?/ \uCDE8\uBBF8 : \uAC8C\uC784, \uD63C\uCF54\uB178>"
+  - "\uAC74\uB2F4 \uC88B\uC544\uD558\uB294 \uC131\uD604\uCC3D\uC785\uB2C8\uB2E4."
+  - "<MBTI : INFP / \uCDE8\uBBF8 : \uAC8C\uC784(PC, \uCF58\uC194), \uD504\uB77C\uBAA8\uB378
+    \uC870\uB9BD>"
 --- !u!95 &887203302
 Animator:
   serializedVersion: 5
@@ -8588,7 +8588,7 @@ Transform:
   m_GameObject: {fileID: 887203300}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 1.204, z: 0.603}
+  m_LocalPosition: {x: 0.6, y: 1.204, z: 0.603}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14954,6 +14954,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8860777239565879622, guid: c62fe6d83dc728b4bbb6cdfc5d4434cd, type: 3}
   m_PrefabInstance: {fileID: 371275092}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1557278626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1557278627}
+  m_Layer: 0
+  m_Name: GameInRouletteCameraPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1557278627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557278626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.3860188, y: 0, z: 0, w: 0.92249095}
+  m_LocalPosition: {x: 0, y: 2, z: -1.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 45.414, y: 0, z: 0}
 --- !u!4 &1560247069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8860777239565879622, guid: c62fe6d83dc728b4bbb6cdfc5d4434cd, type: 3}
@@ -14989,20 +15020,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_personList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1338563590}
+  - {fileID: 687237098}
+  - {fileID: 496997674}
+  - {fileID: 887203302}
+  - {fileID: 743535487}
   m_light: {fileID: 1735251638}
   m_camera: {fileID: 287513206}
   m_revolver: {fileID: 901991737}
   m_blood: {fileID: 557209121}
   m_originCameraTransform: {fileID: 29491332}
+  m_gameInRouletteCameraPos: {fileID: 1557278627}
   m_originRevolverTransform: {fileID: 936191876}
   m_revolverCameraTransform: {fileID: 901991736}
   m_tempTransform: {fileID: 820088488}
-  m_isHesitate: 0
+  m_isHesitate: 1
 --- !u!4 &1561157186
 Transform:
   m_ObjectHideFlags: 0
@@ -15675,9 +15707,12 @@ MonoBehaviour:
   - {fileID: 871738427}
   - {fileID: 496460512}
   - {fileID: 1705679274}
+  introTextEffect: {fileID: 2108923255}
   mainCamera: {fileID: 287513206}
   introTextFinalPos: []
   menuButtonFinalPos: []
+  m_gameOutCameraPos: {fileID: 1817781075}
+  m_gameInCameraPos: {fileID: 29491332}
 --- !u!4 &1629591809
 Transform:
   m_ObjectHideFlags: 0
@@ -17773,6 +17808,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816622931}
   m_CullTransparentMesh: 1
+--- !u!1 &1817781074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1817781075}
+  m_Layer: 0
+  m_Name: GameOutCameraPos
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1817781075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817781074}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.34981498, y: 0, z: 0, w: 0.93681884}
+  m_LocalPosition: {x: 0, y: 2, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 40.952, y: 0, z: 0}
 --- !u!4 &1820671147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8860777239565879622, guid: c62fe6d83dc728b4bbb6cdfc5d4434cd, type: 3}
@@ -20881,7 +20947,11 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 287513207}
+  - {fileID: 1817781075}
+  - {fileID: 29491332}
+  - {fileID: 1557278627}
   - {fileID: 1753779415}
+  - {fileID: 1561157186}
   - {fileID: 157963193}
   - {fileID: 1491709064}
   - {fileID: 1484316777}
@@ -20898,12 +20968,10 @@ SceneRoots:
   - {fileID: 2112308707}
   - {fileID: 1410703587}
   - {fileID: 1338563592}
-  - {fileID: 743535489}
   - {fileID: 687237100}
-  - {fileID: 887203304}
   - {fileID: 496997676}
+  - {fileID: 743535489}
+  - {fileID: 887203304}
   - {fileID: 1735251639}
   - {fileID: 1954093389}
-  - {fileID: 1561157186}
   - {fileID: 936191876}
-  - {fileID: 29491332}

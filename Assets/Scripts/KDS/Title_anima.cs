@@ -17,6 +17,10 @@ public class TextIntroEffect : MonoBehaviour
         }
     }
 
+    public void StopCorutine(){
+        StopAllCoroutines();
+    }
+
     IEnumerator PlayTextIntroEffect(Text text, float delay, int i)
     {
         // 애니메이션을 지연시키기 위해 기다리기
