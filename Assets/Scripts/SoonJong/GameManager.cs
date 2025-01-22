@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
             //user Á×ÀÌ±â(ÆøÅº Á¦¿ÜÇÑ Ä«µå¿¡ ÇØ´çÇÏ´Â user Á×ÀÌ±â)
             if (firstCard.index != 10 )
             {
-                isLive[firstCard.index == 10 ? 6 : firstCard.index] = false;
+                isLive[firstCard.index] = false;
                 Debug.Log($"{firstCard.index} °¡ Á×¾ú´Ù");
             }
             else if( secondCard.index != 10)
