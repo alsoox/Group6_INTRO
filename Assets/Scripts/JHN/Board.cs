@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Burst.Intrinsics;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Board : MonoBehaviour
@@ -15,7 +16,7 @@ public class Board : MonoBehaviour
     public GameObject[] cards; // 카드들이 담긴 배열
     public Vector3[] targetPositions; // 카드들이 이동할 목표 위치
 
-    public int round = 1;
+
     private int[] arr;
 
     void Start()
@@ -57,7 +58,7 @@ public class Board : MonoBehaviour
             nowCardGroup = cardGroup[g];
 
         }
-        if (curRound == 2)
+        else if (curRound == 2)
         {
             int[] round2 = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 10, 10, 10, 10, 10, 10, 10 };
             round2 = round2.OrderBy(x => Random.Range(0f, 5f)).ToArray();
@@ -66,7 +67,7 @@ public class Board : MonoBehaviour
             int g = Random.Range(3, 6);
             nowCardGroup = cardGroup[g];
         }
-        if (curRound == 3)
+        else if (curRound == 3)
         {
             int[] round3 = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
             round3 = round3.OrderBy(x => Random.Range(0f, 5f)).ToArray();
@@ -74,6 +75,10 @@ public class Board : MonoBehaviour
 
             int g = Random.Range(6, 9);
             nowCardGroup = cardGroup[g];
+        }
+        else{
+            Debug.Log("wrong curRound");
+            return;
         }
 
         nowCardGroup.SetActive(true);
@@ -95,7 +100,7 @@ public class Board : MonoBehaviour
 
             child.position = new Vector3(0, 0, 0);  // 초기 위치 설정
 
-            MixCard mixCard = child.GetComponent<MixCard>();
+            Card mixCard = child.GetComponent<Card>();
 
             if (curRound == 3) //라운드 3일땐 따로
             {
@@ -117,12 +122,36 @@ public class Board : MonoBehaviour
             else
             {
                 if (arr[i] != 10)
-                    mixCard.Setting(arr[i], round);  // 일반 카드
+                    mixCard.Setting(arr[i], curRound);  // 일반 카드
                 else
                     mixCard.Setting();  // 폭탄 카드
             }
-
+            if (arr[i] > 4 && arr[i] <= 9) mixCard.index = arr[i] - 5;
+            else mixCard.index = arr[i];
         }
         StartCoroutine(AnimateCardsToPosition());   // 카드들의 목표 위치를 설정한 후, 애니메이션 시작
+    }
+
+
+    public void ClearBoard()
+    {
+        if (nowCardGroup != null)
+        {
+            // 현재 카드 그룹 비활성화
+            nowCardGroup.SetActive(false);
+
+            // 카드 배열 초기화
+            cards = null;
+            targetPositions = null;
+        }
+    }
+
+    public void RoundClear(int curRound)
+    {
+        // 이전 라운드 보드 클리어
+        ClearBoard();
+
+        // 새로운 라운드 설정
+        RandomCards(curRound);
     }
 }
