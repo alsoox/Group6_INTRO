@@ -16,7 +16,7 @@ public class Board : MonoBehaviour
     public GameObject[] cards; // 카드들이 담긴 배열
     public Vector3[] targetPositions; // 카드들이 이동할 목표 위치
 
-    public int round = 1;
+
     private int[] arr;
 
     void Start()
@@ -122,7 +122,7 @@ public class Board : MonoBehaviour
             else
             {
                 if (arr[i] != 10)
-                    mixCard.Setting(arr[i], round);  // 일반 카드
+                    mixCard.Setting(arr[i], curRound);  // 일반 카드
                 else
                     mixCard.Setting();  // 폭탄 카드
             }
@@ -130,5 +130,28 @@ public class Board : MonoBehaviour
             else mixCard.index = arr[i];
         }
         StartCoroutine(AnimateCardsToPosition());   // 카드들의 목표 위치를 설정한 후, 애니메이션 시작
+    }
+
+
+    public void ClearBoard()
+    {
+        if (nowCardGroup != null)
+        {
+            // 현재 카드 그룹 비활성화
+            nowCardGroup.SetActive(false);
+
+            // 카드 배열 초기화
+            cards = null;
+            targetPositions = null;
+        }
+    }
+
+    public void RoundClear(int curRound)
+    {
+        // 이전 라운드 보드 클리어
+        ClearBoard();
+
+        // 새로운 라운드 설정
+        RandomCards(curRound);
     }
 }

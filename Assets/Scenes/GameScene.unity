@@ -5305,7 +5305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 875876337}
-  - component: {fileID: 875876339}
+  - component: {fileID: 875876338}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5328,7 +5328,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &875876339
+--- !u!114 &875876338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5342,6 +5342,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
+  boardObject: {fileID: 1874632191}
+  round: 0
   score: 0
 --- !u!1001 &881687843
 PrefabInstance:
@@ -12473,7 +12475,6 @@ MonoBehaviour:
   - {fileID: 1056571341}
   cards: []
   targetPositions: []
-  round: 0
 --- !u!1001 &1877937378
 PrefabInstance:
   m_ObjectHideFlags: 0
