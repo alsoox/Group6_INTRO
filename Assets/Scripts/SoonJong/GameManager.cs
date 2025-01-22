@@ -13,7 +13,12 @@ public class GameManager : MonoBehaviour
     public Card secondCard; // 두번째 뒤집은 카드 
     public GameObject boardObject;
     public int round = 1;
-    public float score;
+
+    public GameObject User0;
+    public GameObject User1;
+    public GameObject User2;
+    public GameObject User3;
+    public GameObject User4;
 
     //public GameObject nextStageBtn;
     //public GameObject mainBtn;
@@ -54,7 +59,7 @@ public class GameManager : MonoBehaviour
     {
         if (firstCard.index == secondCard.index) // 매칭 한 카드가 같을 경우
         {
-            firstCard.DestoryCard();  
+            firstCard.DestoryCard();
             secondCard.DestoryCard(); // 사람카드든 폭탄카드든 맞으면 파괴
 
             if (firstCard.index != 10 || secondCard.index != 10)  // 매칭 한 카드가 사람카드일 경우 매칭 횟수 차감
@@ -68,10 +73,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("클리어!!");
                 RoundClear();
-                //GameClear();
             }
-
-            
         }
 
         else if (firstCard.index != secondCard.index) // 매칭 한 카드가 다를 경우
