@@ -1,89 +1,179 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RussianRoulette : MonoBehaviour
 {
     public List<Animator> m_personList;
-    public Light m_actionLight;
+    public Light m_light;
     public Camera m_camera;
     public GameObject m_revolver;
+    public CanvasGroup m_blood;
     public Transform m_originCameraTransform;
     public Transform m_originRevolverTransform;
     public Transform m_revolverCameraTransform;
     public Transform m_tempTransform;
-    // Îí§ÏßëÎäî Ï§ëÏù¥ÎùºÍ≥† ÏïåÎ¶º
-    public bool m_isAction = false;
+    // µ⁄¡˝¥¬ ¡ﬂ¿Ã∂Û∞Ì æÀ∏≤
+    private bool m_isAction = false;
 
-    // Ï¥ê Ïè†Îïå ÎßùÏÑ§Ïù¥Îäî Í≤É
+    // √Õ ΩÚ∂ß ∏¡º≥¿Ã¥¬ ∞Õ
     public bool m_isHesitate = true;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(CoroutineRussianRoulette(true, 1));
+    public void OnClick1PlayerKill(bool _isShoot){
+        StartCoroutine(CoroutineRussianRoulette(_isShoot, 0));
+    }
+    public void OnClick2PlayerKill(bool _isShoot){
+        StartCoroutine(CoroutineRussianRoulette(_isShoot, 1));
+    }
+    public void OnClick3PlayerKill(bool _isShoot){
+        StartCoroutine(CoroutineRussianRoulette(_isShoot, 2));
+    }
+    public void OnClick4PlayerKill(bool _isShoot){
+        StartCoroutine(CoroutineRussianRoulette(_isShoot, 3));
+    }
+    public void OnClick5PlayerKill(bool _isShoot){
+        StartCoroutine(CoroutineRussianRoulette(_isShoot, 4));
     }
 
-    public IEnumerator GunMoveToPerson(int _sitPosition)
+    public void ShootAction(bool _isShoot, int _sitPosition){
+        StartCoroutine(CoroutineRussianRoulette(_isShoot, _sitPosition));
+    }
+
+
+    private IEnumerator GunMoveToPerson(int _sitPosition)
     {
-        Animator person = m_personList[_sitPosition];
 
-        person.SetBool("Scared", true);
-
-        // Position Î≥µÏÇ¨
+        // Position ∫πªÁ
         Vector3 newPosition = m_personList[_sitPosition].transform.position;
-        newPosition.z -= 0.3f; // z Í∞íÏùÑ -0.3 Ï°∞Ï†ï
+        newPosition.z -= 0.3f; // z ∞™¿ª -0.3 ¡∂¡§
         m_tempTransform.position = newPosition;
 
-        // Rotation Î≥µÏÇ¨
-        m_tempTransform.rotation = m_personList[_sitPosition].transform.rotation; // ÌöåÏ†ÑÍ∞í Í∑∏ÎåÄÎ°ú Î≥µÏÇ¨
+        // Rotation ∫πªÁ
+        m_tempTransform.rotation = m_personList[_sitPosition].transform.rotation; // »∏¿¸∞™ ±◊¥Î∑Œ ∫πªÁ
         
 
         yield return StartCoroutine(CoroutineObjectMove(m_revolver, m_originRevolverTransform, m_tempTransform));
     }
 
-    public IEnumerator GunReturnToTable()
+    private IEnumerator GunReturnToTable()
     {
         yield return StartCoroutine(CoroutineObjectMove(m_revolver, m_tempTransform, m_originRevolverTransform));
     }
 
-    public void Gun(bool _isShoot)
+    private IEnumerator GunAction(bool _isShoot, int _sitPosition)
     {
-        
+        // ∏¡º≥¿” ¿÷¿Ã ΩÚ¡ˆ æ¯¿Ã ΩÚ¡ˆ
+        Animator person = m_personList[_sitPosition];
+
+        person.SetBool("Scared", true);
+        if (m_isHesitate){
+            m_revolver.GetComponent<Animator>().SetTrigger("PrepareForShooting");
+            yield return new WaitForSeconds(2f);
+            m_revolver.GetComponent<Animator>().SetTrigger("Shot2");
+            yield return new WaitForSeconds(1f);
+        } else {
+            m_revolver.GetComponent<Animator>().SetTrigger("Shot1");
+            yield return new WaitForSeconds(1f);
+        }
+
+        // √—æÀ¿Ã ≥™∞¨¿ª∂ß æ»≥™∞¨¿ª∂ß
+        if(_isShoot){
+            Debug.Log("≈¡");
+            
+            m_light.color = Color.red * 2f;
+
+            m_blood.alpha = 1;
+            m_blood.gameObject.SetActive(true);
+            person.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+            float fadeDuration = 1f; // ªÁ∂Û¡ˆ¥¬ Ω√∞£
+            float timeElapsed = 0f;
+            while (timeElapsed < fadeDuration)
+            {
+                m_blood.alpha = 1f - (timeElapsed / fadeDuration);
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            m_blood.gameObject.SetActive(false);
+            m_blood.alpha = 1;
+        } else {
+            Debug.Log("¬˚ƒ¨..!");
+            
+        }
+
+        yield return new WaitForSeconds(2f);
+        person.SetBool("Scared", false);
     }
     
     private IEnumerator CoroutineRussianRoulette(bool _isShoot, int _sitPosition)
     {
-        // Ï¥ù Ïù¥Îèô
+        // «‡µø Ω√¿€«“ ∂ß¥¬ ƒ⁄∑Á∆æ Ω««‡ æ»µ 
+        if(m_isAction){
+            yield break;
+        }
+        // «‡µø Ω√¿€«“ ∂ß¥¬ «ÿ¥Á ƒ⁄∑Á∆æ ¥ŸΩ√ Ω««‡ æ»µ«∞‘ «œ±‚ ¿ß«ÿ bool∞™ ∏‚πˆ∫Øºˆ∑Œ ¿˙¿Â
+        m_isAction = true;
+
+
+        m_light.gameObject.SetActive(true);
+        m_light.color = Color.red * 0.35f;
+        // √— ¿Ãµø
         yield return StartCoroutine(GunMoveToPerson(_sitPosition));
-        // Ï¥ù Îî∞Îùº Ïπ¥Î©îÎùº Ïù¥Îèô
+        // √— µ˚∂Û ƒ´∏ﬁ∂Û ¿Ãµø
         yield return StartCoroutine(CoroutineObjectMove(m_camera.gameObject, m_originCameraTransform, m_revolverCameraTransform));
         
 
+        yield return StartCoroutine(GunAction(_isShoot, _sitPosition));
 
 
-        // Ïπ¥Î©îÎùº ÌÖåÏù¥Î∏îÎ°ú ÏõêÏúÑÏπò
+        // ƒ´∏ﬁ∂Û ≈◊¿Ã∫Ì∑Œ ø¯¿ßƒ°
         yield return StartCoroutine(CoroutineObjectMove(m_camera.gameObject, m_revolverCameraTransform, m_originCameraTransform));
-        // Ï¥ù ÌÖåÏù¥Î∏îÎ°ú ÏõêÏúÑÏπò
+        // √— ≈◊¿Ã∫Ì∑Œ ø¯¿ßƒ°
         yield return StartCoroutine(GunReturnToTable());
+        // ∂Û¿Ã∆Æ ∏⁄¡ˆ∞‘ ≈¿Â
+        yield return StartCoroutine(CoroutineLightColorFade(m_light, m_light.color.r, 0f));
+        m_light.gameObject.SetActive(false);
+        
+        // «‡µø Ω√¿€«“ ∂ß¥¬ «ÿ¥Á ƒ⁄∑Á∆æ ¥ŸΩ√ Ω««‡ æ»µ«∞‘ «œ±‚ ¿ß«ÿ bool∞™ ∏‚πˆ∫Øºˆ∑Œ ¿˙¿Â
+        m_isAction = false;
     }
 
-    //Ïπ¥Îìú Ïï†ÎãàÎ©îÏù¥ÏÖò
+    //ƒ´µÂ æ÷¥œ∏ﬁ¿Ãº«
     private IEnumerator CoroutineObjectMove(GameObject _object, Transform _startPos, Transform _endPos)
     {
-        float moveDuration = 1f; // Ïù¥Îèô ÏãúÍ∞Ñ
+        float moveDuration = 1f; // ¿Ãµø Ω√∞£
         float timeElapsed = 0f;
-        while (timeElapsed < moveDuration+0.5f)
+        while (timeElapsed < moveDuration+0.1f)
         {
-            Debug.Log(timeElapsed / moveDuration);
-            _object.transform.position = Vector3.Slerp(_startPos.position, _endPos.position, timeElapsed / moveDuration);   // ÏÑ†ÌòïÎ≥¥Í∞Ñ
-            _object.transform.rotation = Quaternion.Slerp(_startPos.rotation, _endPos.rotation, timeElapsed / moveDuration);   // ÏÑ†ÌòïÎ≥¥Í∞Ñ
+            _object.transform.position = Vector3.Slerp(_startPos.position, _endPos.position, timeElapsed / moveDuration);   // º±«¸∫∏∞£
+            _object.transform.rotation = Quaternion.Slerp(_startPos.rotation, _endPos.rotation, timeElapsed / moveDuration);   // º±«¸∫∏∞£
             timeElapsed += Time.deltaTime;
             yield return null;
         }
         _object.transform.position = _endPos.position;
         _object.transform.rotation = _endPos.rotation;
-        Debug.Log("aa");
+    }
+
+    
+    //∂Û¿Ã∆Æ æ÷¥œ∏ﬁ¿Ãº«
+    private IEnumerator CoroutineLightColorFade(Light _light, float _start, float _end)
+    {
+        float duration = 2f; // ∫Ø»Ø Ω√∞£
+        float timeElapsed = 0f;
+
+        float between = _start - _end;
+        
+        while (timeElapsed < duration)
+        {
+            _light.color = Color.red * (between * ( 1 - (timeElapsed / duration)));
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        _light.color = Color.red * _end;
     }
 }
