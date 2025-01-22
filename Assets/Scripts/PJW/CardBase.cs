@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +6,15 @@ namespace PJW
 {
     public class CardBase : MonoBehaviour
     {
+        private bool m_isFliping = false;
         [SerializeField] private SpriteRenderer m_frontImage;
         [SerializeField] private GameObject m_backObj;
+        /*
+        
 
         private string[] m_spritePrefixes = { "JHN_", "KDS_", "KSJ_", "SHC_", "PJW_", "BANG" };
 
-        private bool m_isFliping = false;
+       
 
         public void Start()
         {
@@ -125,4 +128,4 @@ namespace PJW
         }
 
     }
-}
+}*/

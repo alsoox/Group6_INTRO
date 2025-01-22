@@ -100,7 +100,7 @@ public class Board : MonoBehaviour
 
             child.position = new Vector3(0, 0, 0);  // 초기 위치 설정
 
-            MixCard mixCard = child.GetComponent<MixCard>();
+            Card mixCard = child.GetComponent<Card>();
 
             if (curRound == 3) //라운드 3일땐 따로
             {

@@ -217,6 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontImage: {fileID: 3376228288892421705}
   index: 0
+  m_backObj: {fileID: 1687281402481829620}
 --- !u!1 &7411515582187432820
 GameObject:
   m_ObjectHideFlags: 0

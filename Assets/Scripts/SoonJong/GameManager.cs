@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public MixCard firstCard; // 처음 뒤집은 카드
-    public MixCard secondCard; // 두번째 뒤집은 카드 
+    public Card firstCard; // 처음 뒤집은 카드
+    public Card secondCard; // 두번째 뒤집은 카드 
 
     public float score;
 
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
             firstCard.DestoryCard();  
             secondCard.DestoryCard(); // 사람카드든 폭탄카드든 맞으면 파괴
 
-            if (firstCard.index != 5 || secondCard.index != 5)  // 매칭 한 카드가 사람카드일 경우 매칭 횟수 차감
+            if (firstCard.index != 10 || secondCard.index != 10)  // 매칭 한 카드가 사람카드일 경우 매칭 횟수 차감
             {
                 count--;
 
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
 
         else if (firstCard.index != secondCard.index) // 매칭 한 카드가 다를 경우
         {
-            if (firstCard.index == 5 || secondCard.index == 5) // 폭탄이 하나가 있으면 미니게임 진행
+            if (firstCard.index ==  10 || secondCard.index == 10) // 폭탄이 하나가 있으면 미니게임 진행
             {
                 MiniGame();
             }
