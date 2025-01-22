@@ -10,13 +10,12 @@ public class Buttonmanager : MonoBehaviour
 {
     public Button Button;
     public GameObject Rank_Board;
-    //public Button Rankingbutton;
-    //public Button MakerButton;
-
+    public GamestartControll GameStartcontroll;
 
     public void GameStart()//게임씬 이동
     {
-        SceneManager.LoadScene("GameScene");
+        //SceneManager.LoadScene("GameScene");
+        GameStartcontroll.StartGame();
     }
 
     public void CreditBtn()//크레딧씬 이동
