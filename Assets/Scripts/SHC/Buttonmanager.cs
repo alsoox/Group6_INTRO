@@ -30,7 +30,11 @@ public class Buttonmanager : MonoBehaviour
     }
 
     public void Gameend()
-    { 
-        //만들어주세요
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit():
+#endif
     }
 }

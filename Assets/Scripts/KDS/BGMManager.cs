@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BGMManager : MonoBehaviour
 {
     private static BGMManager instance;  // 싱글톤 인스턴스
     public AudioSource audioSource;      // BGM을 재생할 AudioSource
     public AudioClip bgmClip;           // 재생할 BGM 트랙
-
+    
+    
     // 싱글톤 인스턴스를 반환
     public static BGMManager Instance
     {

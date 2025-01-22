@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CircleFiller : MonoBehaviour
 {
@@ -58,6 +59,7 @@ public class CircleFiller : MonoBehaviour
         isFilling = false;
 
         //여기다가 씬 체인져
+        SceneManager.LoadScene("MainScene");
     }
 
 
