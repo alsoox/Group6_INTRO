@@ -5,15 +5,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager1 : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager1 Instance;
 
+    public GameObject boardObject;
     public Card firstCard; // 처음 뒤집은 카드
     public Card secondCard; // 두번째 뒤집은 카드 
-    public GameObject boardObject;
-    public int round = 1;
+
     public float score;
+    public int round = 1;
 
     //public GameObject nextStageBtn;
     //public GameObject mainBtn;
@@ -118,6 +119,7 @@ public class GameManager : MonoBehaviour
             totalChance--; // 격발 실패 시 총알감소
         }
     }
+
 
     public void RoundClear()
     {
