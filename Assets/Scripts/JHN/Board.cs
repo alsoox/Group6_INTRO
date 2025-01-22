@@ -26,7 +26,7 @@ public class Board : MonoBehaviour
 
     private IEnumerator AnimateCardsToPosition()    //카드 애니메이션
     {
-        float moveDuration = 0.05f; // 이동 시간
+        float moveDuration = 0.1f; // 이동 시간
         float timeElapsed;
 
         // 각 카드마다 이동
