@@ -12,19 +12,20 @@ public class User : MonoBehaviour
 
     void Awake()
     {
-        
+
     }
 
     void Start()
     {
-        if(gameObject.name.StartsWith("User")) // User 인덱스값 부여
+        if (gameObject.name.StartsWith("User")) // User 인덱스값 부여
         {
             string name = gameObject.name;
             if (name.Length > 4 && int.TryParse(name.Substring(4), out int result))
             {
                 index = result;
             }
-        }       
+        }
+        // ksj : 2 / pjw : 4 / jhn : 0 / kds : 1 / shc : 3
     }
 
     public void UserDie()
