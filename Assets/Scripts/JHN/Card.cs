@@ -10,7 +10,7 @@ public class Card : MonoBehaviour
     Transform frontTransform;
     Transform frontTransform2;
     public int index;
-    private bool m_isFliping = false;
+    public bool m_isFliping = false;
     [SerializeField] private GameObject m_backObj;
 
     private string[] spritePrefixes = { "JHN_", "KDS_", "KSJ_", "SHC_", "PJW_", "BANG" };
