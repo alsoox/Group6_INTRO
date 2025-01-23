@@ -85,7 +85,7 @@ public class RussianRoulette : MonoBehaviour
         // ÃÑ¾ËÀÌ ³ª°¬À»¶§ ¾È³ª°¬À»¶§
         if(_isShoot){
             SoundManager.instance.PlaySFX("fire");
-            m_revolverCount.SetShoot(5);
+            m_revolverCount.SetShoot(GameManager.Instance.totalChance);
             
             m_light.color = Color.red * 2f;
 
@@ -106,7 +106,7 @@ public class RussianRoulette : MonoBehaviour
             m_blood.alpha = 1;
         } else {
             SoundManager.instance.PlaySFX("fall");
-            m_revolverCount.SetBullet(5);
+            m_revolverCount.SetBullet(GameManager.Instance.totalChance);
             
         }
 
@@ -125,8 +125,7 @@ public class RussianRoulette : MonoBehaviour
 
         m_revolverCount.gameObject.SetActive(true);
         
-        // m_revolverCount.SetBullet(GameManager.Instance.totalChance + 1);
-        m_revolverCount.SetBullet(6);
+        m_revolverCount.SetBullet(GameManager.Instance.totalChance + 1);
 
         m_light.gameObject.SetActive(true);
         m_light.color = Color.red * 0.35f;

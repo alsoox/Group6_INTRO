@@ -3826,7 +3826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &338717629
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21973,6 +21973,7 @@ MonoBehaviour:
   round: 0
   user_name: 
   isLive: 0101010101
+  totalChance: 1
 --- !u!4 &1908480307
 Transform:
   m_ObjectHideFlags: 0

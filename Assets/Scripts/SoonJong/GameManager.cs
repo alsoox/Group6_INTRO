@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     int count = 5; // 
     int health = 5; // 살아있는 사람 수
-    int totalChance = 1; // 러시안룰렛 기회
+    public int totalChance = 1; // 러시안룰렛 기회
     int matchingCount = 0; //매칭성공수
     int score = 0; // 전체점수
 
