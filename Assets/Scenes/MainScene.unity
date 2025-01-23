@@ -578,12 +578,12 @@ Transform:
   m_GameObject: {fileID: 29491331}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 5.2, z: -0.6}
+  m_LocalPosition: {x: 0, y: 3.513, z: -0.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 40.952, y: 0, z: 0}
 --- !u!4 &32768158 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8860777239565879622, guid: c62fe6d83dc728b4bbb6cdfc5d4434cd, type: 3}
@@ -1310,6 +1310,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 578c0883793250349bfe1015e8ebc0ed, type: 3}
   - {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
   - {fileID: 8300000, guid: 756c4e23e8553954fa91b4cc2936afa0, type: 3}
+  - {fileID: 8300000, guid: df5273fa47418d7468aa021fcbf06043, type: 3}
+  - {fileID: 8300000, guid: 54124209841705d4889316d7c86d884d, type: 3}
 --- !u!4 &157818472
 Transform:
   m_ObjectHideFlags: 0
@@ -1503,7 +1505,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &157963193
 RectTransform:
@@ -10712,7 +10714,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: -483}
+  m_AnchoredPosition: {x: 828, y: -517}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080512435
@@ -19562,7 +19564,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -23, y: -483}
+  m_AnchoredPosition: {x: 765, y: -517}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1849851451

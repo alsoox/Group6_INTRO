@@ -130,20 +130,33 @@ public class RussianRoulette : MonoBehaviour
         yield return camPosMove;
         yield return fovMove;
 
+        Animator person = m_personList[_sitPosition];
+        person.GetComponent<CharacterText>().Alert();
+        yield return new WaitForSeconds(1f); // 말하고 1초 기다림
+
         yield return StartCoroutine(CoroutineObjectMove(m_camera.gameObject, m_gameInRouletteCameraPos, m_revolverCameraTransform));
         yield return StartCoroutine(GunAction(_isShoot, _sitPosition));
 
 
+        person.GetComponent<CharacterText>().Alert();
+
+        yield return StartCoroutine(CoroutineObjectMove(m_camera.gameObject, m_revolverCameraTransform, m_gameInRouletteCameraPos));
+        yield return new WaitForSeconds(0.5f); // 말하고 1초 기다림
+
         // 카메라 테이블로 원위치
         fovMove = StartCoroutine(CoroutineFovMove(Camera.main, 60f, 15f));
-        camPosMove = StartCoroutine(CoroutineObjectMove(m_camera.gameObject, m_revolverCameraTransform, m_originCameraTransform));
+        camPosMove = StartCoroutine(CoroutineObjectMove(m_camera.gameObject, m_gameInRouletteCameraPos, m_originCameraTransform));
+        var gun = StartCoroutine(GunReturnToTable());
+        var light = StartCoroutine(CoroutineLightColorFade(m_light, m_light.color.r, 0f));
         yield return fovMove;
         yield return camPosMove;
 
         // 총 테이블로 원위치
-        yield return StartCoroutine(GunReturnToTable());
+        yield return gun;
+        
+
         // 라이트 멋지게 퇴장
-        yield return StartCoroutine(CoroutineLightColorFade(m_light, m_light.color.r, 0f));
+        yield return light;
         m_light.gameObject.SetActive(false);
         
         // 행동 시작할 때는 해당 코루틴 다시 실행 안되게 하기 위해 bool값 멤버변수로 저장
@@ -186,7 +199,7 @@ public class RussianRoulette : MonoBehaviour
     //라이트 애니메이션
     private IEnumerator CoroutineLightColorFade(Light _light, float _start, float _end)
     {
-        float duration = 2f; // 변환 시간
+        float duration = 1f; // 변환 시간
         float timeElapsed = 0f;
 
         float between = _start - _end;

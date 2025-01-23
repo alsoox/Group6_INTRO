@@ -10,7 +10,7 @@ public class Card : MonoBehaviour
     Transform frontTransform;
     Transform frontTransform2;
     public int index;
-    private bool m_isFliping = false;
+    public bool m_isFliping = false;
     [SerializeField] private GameObject m_backObj;
 
     private string[] spritePrefixes = { "JHN_", "KDS_", "KSJ_", "SHC_", "PJW_", "BANG" };
@@ -48,8 +48,8 @@ public class Card : MonoBehaviour
     private void FitSpriteToCard()
     {
         // 카드의 크기 (Transform의 localScale을 사용)
-        float cardWidth = transform.localScale.x;
-        float cardHeight = transform.localScale.y;
+        float cardWidth = frontImage.transform.localScale.x;
+        float cardHeight = frontImage.transform.localScale.y;
 
         // 스프라이트의 원래 크기
         Vector2 spriteSize = frontImage.sprite.bounds.size;
@@ -94,6 +94,7 @@ public class Card : MonoBehaviour
     {
         if (!m_isFliping)
         {
+            SoundManager.instance.PlaySFX("CardFlip");
             StartCoroutine(CoroutineCardFlip(m_backObj, frontImage.gameObject));
         }
     }
