@@ -16,10 +16,13 @@ public class GameManager : MonoBehaviour
     public Card firstCard; // 처음 뒤집은 카드
     public Card secondCard; // 두번째 뒤집은 카드 
     public Board board;
+    public GameObject die_text;
+    private GameObject currentdie_text;
     public bool isRouletteAction;
     public RussianRoulette RussianRouletteAction;
     public int round = 1;
     public bool[] isLive = new bool[5] { true, true, true, true, true};
+
      //jhn : 0 / kds : 1 / ksj : 2 / /shc : 3 / pjw : 4
     int count = 5; // 매칭 남은 횟수  - stage 1,2 : 5 , stage 3 : 10
     int health = 5; // 살아있는 사람 수
@@ -83,6 +86,7 @@ public class GameManager : MonoBehaviour
             {
                 MiniGame();
             }
+    
 
             firstCard.CloseCard();  
             secondCard.CloseCard();  //뒤집은 카드 정보 초기화
@@ -103,6 +107,13 @@ public class GameManager : MonoBehaviour
         else if (secondCard.index != 10 && isLive[secondCard.index] == true)
         {
             Shoot(secondCard.index);
+        }
+        else 
+        {
+            currentdie_text = Instantiate(die_text);
+            RectTransform rectTransform = currentdie_text.GetComponent<RectTransform>();
+            rectTransform.localPosition = Vector3.zero; // 캔버스 내에서 (0, 0, 0) 위치
+            Invoke("DestroyCanvas", 1f);
         }
 
         if (health == 0)
@@ -171,6 +182,9 @@ public class GameManager : MonoBehaviour
         count = 5;
         health = 5;
     }
-
+    private void DestroyCanvas()
+    {
+        Destroy(currentdie_text); // 캔버스 파괴
+    }
 
 }
