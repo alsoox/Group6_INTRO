@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
 
     public Card firstCard; // 처음 뒤집은 카드
     public Card secondCard; // 두번째 뒤집은 카드 
-    public GameObject boardObject;
+    public Board board;
+    public bool isRouletteAction;
     public RussianRoulette RussianRouletteAction;
     public int round = 1;
     public bool[] isLive = new bool[5] { true, true, true, true, true};
@@ -106,7 +107,7 @@ public class GameManager : MonoBehaviour
 
         if (health == 0)
         {
-            GameOver();
+            Invoke("GameOver", 6f);
             Debug.Log($"모두 죽었습니다");
         }
 
@@ -126,6 +127,7 @@ public class GameManager : MonoBehaviour
             isLive[index] = false;
             RussianRouletteAction.ShootAction(true, index);
 
+
         }
         else 
         {
@@ -137,7 +139,6 @@ public class GameManager : MonoBehaviour
     public void RoundClear()
     {
         round++;  // round 값 증가
-        Board board = boardObject.GetComponent<Board>();
         board.RoundClear(round); // 증가된 round 값을 넘겨줌
 
         if (round == 3)
@@ -159,7 +160,6 @@ public class GameManager : MonoBehaviour
 
     public void RoundRetry()
     {
-        Board board = boardObject.GetComponent<Board>();
         board.RoundClear(round); // 증가된 round 값을 넘겨줌
     }
 
@@ -171,4 +171,6 @@ public class GameManager : MonoBehaviour
         count = 5;
         health = 5;
     }
+
+
 }
