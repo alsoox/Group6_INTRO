@@ -14,19 +14,21 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Card firstCard; // 처음 뒤집은 카드
+    private bool isFirstCard;
     public Card secondCard; // 두번째 뒤집은 카드 
+    private bool isSecondCard;
     public Board board;
-    public GameObject die_text;
-    private GameObject currentdie_text;
     public bool isRouletteAction;
     public RussianRoulette RussianRouletteAction;
     public int round = 1;
     public bool[] isLive = new bool[5] { true, true, true, true, true};
+    //jhn : 0 / kds : 1 / ksj : 2 / /shc : 3 / pjw : 4
 
-     //jhn : 0 / kds : 1 / ksj : 2 / /shc : 3 / pjw : 4
-    int count = 5; // 매칭 남은 횟수  - stage 1,2 : 5 , stage 3 : 10
+    int count = 5; // 
     int health = 5; // 살아있는 사람 수
     int totalChance = 6; // 러시안룰렛 기회
+    int matchingCount = 0; //매칭성공수
+    int score = 0; // 전체점수
 
     //public Animator successAnim; //카드 매칭 시 에디메이션추가
 
@@ -55,7 +57,13 @@ public class GameManager : MonoBehaviour
         time += Time.deltaTime;
     }
 
-    public void Matched() // 카드 매칭 하기
+
+    public void Matched() // 카드 매칭 하기 그런데 딜레이를 추가한
+    {
+        StartCoroutine(MatchedWithDelay());
+    }
+
+    private IEnumerator MatchedWithDelay()
     {
         if (firstCard.index == secondCard.index) // 매칭 한 카드가 같을 경우
         {
@@ -65,8 +73,9 @@ public class GameManager : MonoBehaviour
             if (firstCard.index != 10 || secondCard.index != 10)  // 매칭 한 카드가 사람카드일 경우 매칭 횟수 차감
             {
                 count--;
+                matchingCount++;
 
-                Debug.Log($"매칭 성공 / 남은 매칭 : {count}");
+                Debug.Log($"매칭 성공 : {matchingCount} / 남은 매칭 : {count}");
             }
 
             if (count == 0) //매칭 완료 클리어
@@ -82,19 +91,24 @@ public class GameManager : MonoBehaviour
 
         else if (firstCard.index != secondCard.index) // 매칭 한 카드가 다를 경우
         {
-            if (firstCard.index ==  10 || secondCard.index == 10) // 폭탄이 하나가 있으면 미니게임 진행
+            if (firstCard.index == 10 || secondCard.index == 10) // 폭탄이 하나가 있으면 미니게임 진행
             {
                 MiniGame();
             }
-    
 
-            firstCard.CloseCard();  
+            firstCard.CloseCard();
             secondCard.CloseCard();  //뒤집은 카드 정보 초기화
+                                    
+            yield return new WaitForSeconds(0.7f);
+
         }
+
 
         firstCard = null;
         secondCard = null;
     }
+
+
 
     public void MiniGame() // 러시안 룰렛
     {
@@ -108,18 +122,11 @@ public class GameManager : MonoBehaviour
         {
             Shoot(secondCard.index);
         }
-        else 
-        {
-            currentdie_text = Instantiate(die_text);
-            RectTransform rectTransform = currentdie_text.GetComponent<RectTransform>();
-            rectTransform.localPosition = Vector3.zero; // 캔버스 내에서 (0, 0, 0) 위치
-            Invoke("DestroyCanvas", 1f);
-        }
 
         if (health == 0)
         {
             Invoke("GameOver", 6f);
-            Debug.Log($"모두 죽었습니다");
+            GameEnd();
         }
 
         Debug.Log($"총알남은수{totalChance}");
@@ -158,9 +165,7 @@ public class GameManager : MonoBehaviour
         }
         else if (round == 4) //게임 클리어시(count, 생존여부 초기화)
         {
-            isLive = Enumerable.Repeat(true, isLive.Length).ToArray();
-            count = 5;
-            SceneManager.LoadScene("CreditScene");
+            GameEnd();
         }
 
         else if (true)
@@ -174,17 +179,23 @@ public class GameManager : MonoBehaviour
         board.RoundClear(round); // 증가된 round 값을 넘겨줌
     }
 
-    public void GameOver() // 클리어실패 (isLive, count, health 초기화)
+    public void GameEnd() // 게임오버 (게임 정보값 초기화)
     {
-        isLive = Enumerable.Repeat(true, isLive.Length).ToArray();
-        Debug.Log("실패ㅜㅠ");
+        Score();
+        Debug.Log($"GameOver : score : {score} 산사람 :{health} 매칭수 : {matchingCount}");
+
         SceneManager.LoadScene("CreditScene");
+
+        isLive = Enumerable.Repeat(true, isLive.Length).ToArray();
         count = 5;
         health = 5;
+        score = 0;
+        matchingCount = 0;
     }
-    private void DestroyCanvas()
+
+    public void Score()
     {
-        Destroy(currentdie_text); // 캔버스 파괴
+        score = health * 100 + matchingCount * 25; // 남은사람 * 100 + 매칭수 * 25;
     }
 
 }
