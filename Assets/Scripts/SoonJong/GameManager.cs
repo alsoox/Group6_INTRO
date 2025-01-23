@@ -20,10 +20,13 @@ public class GameManager : MonoBehaviour
     public RussianRoulette RussianRouletteAction;
     public int round = 1;
     public bool[] isLive = new bool[5] { true, true, true, true, true};
-     //jhn : 0 / kds : 1 / ksj : 2 / /shc : 3 / pjw : 4
-    int count = 5; // 매칭 남은 횟수  - stage 1,2 : 5 , stage 3 : 10
+    //jhn : 0 / kds : 1 / ksj : 2 / /shc : 3 / pjw : 4
+
+    int count = 5; // 
     int health = 5; // 살아있는 사람 수
-    int totalChance = 6; // 러시안룰렛 기회
+    int totalChance = 1; // 러시안룰렛 기회
+    int matchingCount = 0; //매칭성공수
+    int score = 0; // 전체점수
 
     //public Animator successAnim; //카드 매칭 시 에디메이션추가
 
@@ -62,8 +65,9 @@ public class GameManager : MonoBehaviour
             if (firstCard.index != 10 || secondCard.index != 10)  // 매칭 한 카드가 사람카드일 경우 매칭 횟수 차감
             {
                 count--;
+                matchingCount++;
 
-                Debug.Log($"매칭 성공 / 남은 매칭 : {count}");
+                Debug.Log($"매칭 성공 : {matchingCount} / 남은 매칭 : {count}");
             }
 
             if (count == 0) //매칭 완료 클리어
@@ -108,7 +112,7 @@ public class GameManager : MonoBehaviour
         if (health == 0)
         {
             Invoke("GameOver", 6f);
-            Debug.Log($"모두 죽었습니다");
+            GameEnd();
         }
 
         Debug.Log($"총알남은수{totalChance}");
@@ -121,7 +125,7 @@ public class GameManager : MonoBehaviour
         if (Random.Range(0, totalChance) == 0) // 격발 성공
         {
             health--;
-            totalChance = 6;//격발시 총알 횟수 초기화
+            totalChance = 1;//격발시 총알 횟수 초기화
 
             //user 죽이기(폭탄 제외한 카드에 해당하는 user 죽이기)
             isLive[index] = false;
@@ -147,9 +151,7 @@ public class GameManager : MonoBehaviour
         }
         else if (round == 4) //게임 클리어시(count, 생존여부 초기화)
         {
-            isLive = Enumerable.Repeat(true, isLive.Length).ToArray();
-            count = 5;
-            SceneManager.LoadScene("CreditScene");
+            GameEnd();
         }
 
         else if (true)
@@ -163,14 +165,23 @@ public class GameManager : MonoBehaviour
         board.RoundClear(round); // 증가된 round 값을 넘겨줌
     }
 
-    public void GameOver() // 클리어실패 (isLive, count, health 초기화)
+    public void GameEnd() // 게임오버 (게임 정보값 초기화)
     {
-        isLive = Enumerable.Repeat(true, isLive.Length).ToArray();
-        Debug.Log("실패ㅜㅠ");
+        Score();
+        Debug.Log($"GameOver : score : {score} 산사람 :{health} 매칭수 : {matchingCount}");
+
         SceneManager.LoadScene("CreditScene");
+
+        isLive = Enumerable.Repeat(true, isLive.Length).ToArray();
         count = 5;
         health = 5;
+        score = 0;
+        matchingCount = 0;
     }
 
+    public void Score()
+    {
+        score = health * 100 + matchingCount * 25; // 남은사람 * 100 + 매칭수 * 25;
+    }
 
 }
