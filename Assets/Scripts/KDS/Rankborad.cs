@@ -23,24 +23,12 @@ public class Rankborad : MonoBehaviour
 
     public Text[] rankingTexts = new Text[10];  // Text UI 배열 (1~10등을 표시할 텍스트)
     private RankingList rankingList;
-    //private string jsonFilePath = "Assets/Resources/JSON/Rank.json";  // JSON 파일 경로
-    private string jsonFilePath = "JSON/Rank.json";
-    void Start()
-    {
-        // Resources 폴더 내에서 JSON 파일 읽기
-        TextAsset jsonText = Resources.Load<TextAsset>(jsonFilePath);  // "Assets/Resources/JSON/Rank.json"에서 "Assets/Resources/"는 제외
+    private string jsonFilePath = "Assets/Resources/JSON/Rank.json";  // JSON 파일 경로
 
-        if (jsonText != null)
-        {
-            // JSON 파싱
-            rankingList = JsonUtility.FromJson<RankingList>(jsonText.text);
-            GameManager.Instance.rankborad = this;
-            RankboradInitialize();
-        }
-        else
-        {
-            Debug.LogError("Rank.json 파일을 Resources 폴더에서 찾을 수 없습니다.");
-        }
+    void Start()
+    { 
+        GameManager.Instance.rankborad = this;
+        RankboradInitialize();
     }
 
     public void AddNewPlayerScore(string p_name,int p_score)
