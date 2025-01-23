@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class RussianRoulette : MonoBehaviour
 {
+    public RevolverCount m_revolverCount;
     public List<Animator> m_personList;
     public Light m_light;
     public Camera m_camera;
@@ -22,6 +23,7 @@ public class RussianRoulette : MonoBehaviour
     public bool m_isHesitate = true;
 
     public void Start(){
+        m_revolverCount.gameObject.SetActive(false);
         GameManager.Instance.RussianRouletteAction = this;
     }
     public void OnClick1PlayerKill(bool _isShoot){
@@ -47,7 +49,6 @@ public class RussianRoulette : MonoBehaviour
 
     private IEnumerator GunMoveToPerson(int _sitPosition)
     {
-
         // Position 복사
         Vector3 newPosition = m_personList[_sitPosition].transform.position;
         newPosition.z -= 0.3f; // z 값을 -0.3 조정
@@ -84,6 +85,7 @@ public class RussianRoulette : MonoBehaviour
         // 총알이 나갔을때 안나갔을때
         if(_isShoot){
             SoundManager.instance.PlaySFX("fire");
+            m_revolverCount.SetShoot(GameManager.Instance.currentChance-1);
             
             m_light.color = Color.red * 2f;
 
@@ -104,7 +106,7 @@ public class RussianRoulette : MonoBehaviour
             m_blood.alpha = 1;
         } else {
             SoundManager.instance.PlaySFX("fall");
-            Debug.Log("찰칵..!");
+            m_revolverCount.SetBullet(GameManager.Instance.currentChance-1);
             
         }
 
@@ -121,6 +123,9 @@ public class RussianRoulette : MonoBehaviour
         // 행동 시작할 때는 해당 코루틴 다시 실행 안되게 하기 위해 bool값 멤버변수로 저장
         m_isAction = true;
 
+        m_revolverCount.gameObject.SetActive(true);
+        
+        m_revolverCount.SetBullet(GameManager.Instance.currentChance);
 
         m_light.gameObject.SetActive(true);
         m_light.color = Color.red * 0.35f;
@@ -160,6 +165,8 @@ public class RussianRoulette : MonoBehaviour
         // 라이트 멋지게 퇴장
         yield return light;
         m_light.gameObject.SetActive(false);
+        
+        m_revolverCount.gameObject.SetActive(false);
         
         // 행동 시작할 때는 해당 코루틴 다시 실행 안되게 하기 위해 bool값 멤버변수로 저장
         m_isAction = false;
