@@ -15063,6 +15063,7 @@ MonoBehaviour:
   m_originRevolverTransform: {fileID: 936191876}
   m_revolverCameraTransform: {fileID: 901991736}
   m_tempTransform: {fileID: 820088488}
+  m_isAction: 0
   m_isHesitate: 1
 --- !u!4 &1561157186
 Transform:
@@ -18999,7 +19000,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
-  boardObject: {fileID: 1410703584}
+  board: {fileID: 1410703585}
+  isRouletteAction: 0
   RussianRouletteAction: {fileID: 1561157185}
   round: 0
   isLive: 0101010101
