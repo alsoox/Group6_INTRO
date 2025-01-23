@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public Board board;
     public bool isRouletteAction;
     public RussianRoulette RussianRouletteAction;
+    public GameObject die_text;
+    private GameObject currentdie_text;
     public int round = 1;
     public bool[] isLive = new bool[5] { true, true, true, true, true};
     //jhn : 0 / kds : 1 / ksj : 2 / /shc : 3 / pjw : 4
@@ -122,6 +124,14 @@ public class GameManager : MonoBehaviour
         {
             Shoot(secondCard.index);
         }
+        else
+        {
+            currentdie_text = Instantiate(die_text);
+            RectTransform rectTransform = currentdie_text.GetComponent<RectTransform>();
+            rectTransform.localPosition = Vector3.zero; // Äµ¹ö½º ³»¿¡¼­ (0, 0, 0) À§Ä¡
+            Invoke("DestroyCanvas", 1f);
+        }
+
 
         if (health == 0)
         {
@@ -192,7 +202,10 @@ public class GameManager : MonoBehaviour
         score = 0;
         matchingCount = 0;
     }
-
+    private void DestroyCanvas()
+    {
+        Destroy(currentdie_text); // Äµ¹ö½º ÆÄ±«
+    }
     public void Score()
     {
         score = health * 100 + matchingCount * 25; // ³²Àº»ç¶÷ * 100 + ¸ÅÄª¼ö * 25;
