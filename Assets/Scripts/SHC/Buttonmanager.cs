@@ -14,6 +14,7 @@ public class Buttonmanager : MonoBehaviour
     public GameObject boardObject;
     public GameObject input_name;
     public InputField playerNameInput;
+    public GameObject GoMainButton;
     private string playerName = null;
 
     public void GameStart()//게임씬 이동
@@ -21,6 +22,9 @@ public class Buttonmanager : MonoBehaviour
         input_name.SetActive(true);
         playerNameInput.onEndEdit.AddListener(OnNameEntered);
         //여기까지가 이름입력   
+
+
+
     }
 
     public void CreditBtn()//크레딧씬 이동
@@ -80,6 +84,8 @@ public class Buttonmanager : MonoBehaviour
         GameManager.Instance.round = 1;  // round 값 증가
         board.RandomCards(GameManager.Instance.round); // 증가된 round 값을 넘겨줌
 
+        GoMainButton.SetActive(true);
+
     }
 
     public void goto_Menu()
@@ -87,6 +93,9 @@ public class Buttonmanager : MonoBehaviour
         GameManager.Instance.RoundInitialize();
         GameManager.Instance.GameInit();
         GameStartcontroll.GoingToMenu();
+
+        // GoMainButton을 메인 화면에서는 비활성화
+        GoMainButton.SetActive(false);
         SceneManager.LoadScene("MainScene");
 
     }
