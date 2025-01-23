@@ -48,8 +48,8 @@ public class Card : MonoBehaviour
     private void FitSpriteToCard()
     {
         // 카드의 크기 (Transform의 localScale을 사용)
-        float cardWidth = transform.localScale.x;
-        float cardHeight = transform.localScale.y;
+        float cardWidth = frontImage.transform.localScale.x;
+        float cardHeight = frontImage.transform.localScale.y;
 
         // 스프라이트의 원래 크기
         Vector2 spriteSize = frontImage.sprite.bounds.size;
@@ -111,6 +111,8 @@ public class Card : MonoBehaviour
     {
         // 뒤집는 중이라고 알림
         m_isFliping = true;
+
+        SoundManager.instance.PlaySFX("CardFlip");
 
         float filpDuration = 0.2f; // 플랍 시간 x 2(앞면, 뒷면)
         float timeElapsed;
