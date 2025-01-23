@@ -23,15 +23,15 @@ public class Rankborad : MonoBehaviour
 
     public Text[] rankingTexts = new Text[10];  // Text UI 배열 (1~10등을 표시할 텍스트)
     private RankingList rankingList;
-    private string jsonFilePath = "Assets/Resources/JSON/Rank.json";  // JSON 파일 경로
-
+    //private string jsonFilePath = "Assets/Resources/JSON/Rank.json";  // JSON 파일 경로
+    private string jsonFilePath = "JSON/Rank.json";
     void Start()
-    { 
+    {
         GameManager.Instance.rankborad = this;
         RankboradInitialize();
     }
 
-    public void AddNewPlayerScore(string p_name,int p_score)
+    public void AddNewPlayerScore(string p_name, int p_score)
     {
         // 새로운 점수를 랭킹에 추가
         Ranking newPlayer = new Ranking { name = p_name, score = p_score };
@@ -60,7 +60,7 @@ public class Rankborad : MonoBehaviour
 
             // UI에 실시간으로 순위 반영
             DisplayRanking();
-         }
+        }
         else
         {
             Debug.Log("점수가낮지요");
@@ -83,11 +83,12 @@ public class Rankborad : MonoBehaviour
     }
     public void RankboradInitialize()
     {
-        // JSON 파일 읽기
-        string json = File.ReadAllText(jsonFilePath);
+        // Resources 폴더 내 JSON 파일 읽기
+        TextAsset jsonText = Resources.Load<TextAsset>("JSON/Rank");
         // JSON 파싱
-        rankingList = JsonUtility.FromJson<RankingList>(json);
+        rankingList = JsonUtility.FromJson<RankingList>(jsonText.text);
         // UI에 랭킹 출력
         DisplayRanking();
+
     }
 }
