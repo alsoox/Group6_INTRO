@@ -60,6 +60,11 @@ public class GamestartControll : MonoBehaviour
         StartCoroutine(GoingToMenuAnimation());
     }
 
+    public void SetActiveMenu(GameObject a, bool b)
+    {
+        a.SetActive(b);
+    }
+
     public IEnumerator GameStartAnimation()
     {
         float timeElapsed = 0f;
