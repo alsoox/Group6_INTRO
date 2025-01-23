@@ -94,6 +94,7 @@ public class Card : MonoBehaviour
     {
         if (!m_isFliping)
         {
+            SoundManager.instance.PlaySFX("CardFlip");
             StartCoroutine(CoroutineCardFlip(m_backObj, frontImage.gameObject));
         }
     }
@@ -111,8 +112,6 @@ public class Card : MonoBehaviour
     {
         // 뒤집는 중이라고 알림
         m_isFliping = true;
-
-        SoundManager.instance.PlaySFX("CardFlip");
 
         float filpDuration = 0.2f; // 플랍 시간 x 2(앞면, 뒷면)
         float timeElapsed;
