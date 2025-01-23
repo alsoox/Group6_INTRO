@@ -9,11 +9,11 @@ public class BGMControl : MonoBehaviour
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private Slider BGMSlider;
     
+    
 
     private void Awake()
     {
         BGMSlider.onValueChanged.AddListener(SetBGMVolume);
-        
     }
 
     // Update is called once per frame
@@ -22,11 +22,13 @@ public class BGMControl : MonoBehaviour
         if (PlayerPrefs.HasKey("Volume"))
         {
             BGMSlider.value = PlayerPrefs.GetFloat("Volume");
+            
         }
         else
         
             BGMSlider.value = 0.5f;
             audioMixer.SetFloat("BGM", Mathf.Log10(BGMSlider.value) * 20);
+            
         
 
     }
@@ -35,8 +37,10 @@ public class BGMControl : MonoBehaviour
         SoundManager.instance.bgmPlayer.volume = volume;
         audioMixer.SetFloat("BGM", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("Volume", BGMSlider.value);
+        
     }
 
+   
     
     
 }
