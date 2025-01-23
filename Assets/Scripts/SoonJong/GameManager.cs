@@ -204,6 +204,7 @@ public class GameManager : MonoBehaviour
         health = 5;
         score = 0;
         matchingCount = 0;
+        round = 0;
     }
 
     private IEnumerator WaitForCameraAnimationAndLoadScene()
