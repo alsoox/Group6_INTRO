@@ -14900,18 +14900,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Get_name, Assembly-CSharp
-        m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1347046456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21973,7 +21961,7 @@ MonoBehaviour:
   round: 0
   user_name: 
   isLive: 0101010101
-  totalChance: 1
+  currentChance: 6
 --- !u!4 &1908480307
 Transform:
   m_ObjectHideFlags: 0

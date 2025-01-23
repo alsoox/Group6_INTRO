@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     int count = 5; // 
     int health = 5; // 살아있는 사람 수
-    int totalChance = 2; // 러시안룰렛 기회
+    int totalChance = 6; // 러시안룰렛 기회
     public int currentChance = 6; // 러시안룰렛 기회 이전것
 
     int matchingCount = 0; //매칭성공수
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
         if (Random.Range(0, totalChance) == 0) // 격발 성공
         {
             health--;
-            totalChance = 2;//격발시 총알 횟수 초기화
+            totalChance = 6;//격발시 총알 횟수 초기화
 
             //user 죽이기(폭탄 제외한 카드에 해당하는 user 죽이기)
             isLive[index] = false;
@@ -214,6 +214,7 @@ public class GameManager : MonoBehaviour
         health = 5;
         score = 0;
         matchingCount = 0;
+        totalChance = 6;
         round = 0;
     }
 
@@ -225,6 +226,7 @@ public class GameManager : MonoBehaviour
         health = 5;
         score = 0;
         matchingCount = 0;
+        totalChance = 6;
         round = 0;
     }
 

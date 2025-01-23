@@ -5,6 +5,10 @@
             "score": 900
         },
         {
+            "name": "123",
+            "score": 900
+        },
+        {
             "name": "Player2",
             "score": 800
         },
@@ -35,10 +39,6 @@
         {
             "name": "NewPlayer",
             "score": 100
-        },
-        {
-            "name": "Player7",
-            "score": 50
         }
     ]
 }

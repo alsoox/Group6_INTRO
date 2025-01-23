@@ -84,8 +84,8 @@ public class Buttonmanager : MonoBehaviour
 
     public void goto_Menu()
     {
-        //GameManager.Instance.RoundInitialize();
-        //GameManager.Instance.GameInit();
+        GameManager.Instance.RoundInitialize();
+        GameManager.Instance.GameInit();
         GameStartcontroll.GoingToMenu();
         SceneManager.LoadScene("MainScene");
 
