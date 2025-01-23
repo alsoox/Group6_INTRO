@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public RoundAnim roundAnim; // RoundAnim 참조
     public GameObject die_text;
     private GameObject currentdie_text;
+    public Rankborad rankborad;
     public int round = 1;
     public string user_name="default";
     public bool[] isLive = new bool[5] { true, true, true, true, true};
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
+        rankborad.RankboradInitialize();
     }
   
     void Update()
@@ -194,7 +196,7 @@ public class GameManager : MonoBehaviour
     {
         Score();
         Debug.Log($"GameOver : score : {score} 산사람 :{health} 매칭수 : {matchingCount}");
-
+        rankborad.AddNewPlayerScore(user_name, score);
         // 애니메이션 완료 후 크레딧 씬 로드
         SceneManager.LoadScene("CreditScene");
 

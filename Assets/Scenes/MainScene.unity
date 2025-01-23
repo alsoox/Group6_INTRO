@@ -20188,6 +20188,7 @@ MonoBehaviour:
   RussianRouletteAction: {fileID: 1561157185}
   roundAnim: {fileID: 287513208}
   die_text: {fileID: 405693241820399752, guid: f25007c2be06d8a438b9b5f39a2c15a2, type: 3}
+  rankborad: {fileID: 1116208465}
   round: 0
   user_name: 
   isLive: 0101010101
