@@ -8,13 +8,14 @@ public class RoundAnim : MonoBehaviour
 {
     public Camera cameraComponent;
     public Transform cameraTransform;
+    public bool doAnim;
 
     // 원래 위치
     private Vector3 initialPosition;
     private float initialOrthographicSize;
     private Quaternion initialRotation;
 
-    void Start()
+    public void TurnCameraAnimation()
     {
         // 원래
         initialPosition = new Vector3(0f, 5f, -0.5f);
@@ -31,6 +32,7 @@ public class RoundAnim : MonoBehaviour
 
         // 카메라 애니메이션 시작
         StartCoroutine(RotateAndMoveCamera(startPosition, endPosition, initialOrthographicSize, endOrthographicSize, startRotation, endRotation, 3f));
+        doAnim = false;
 
         // 5초 후 돌아오는 애니메이션 시작
         Invoke("RestoreCamera", 5f);

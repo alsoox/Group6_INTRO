@@ -2846,6 +2846,7 @@ GameObject:
   - component: {fileID: 287513207}
   - component: {fileID: 287513206}
   - component: {fileID: 287513205}
+  - component: {fileID: 287513208}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -2927,6 +2928,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 40.952, y: 0, z: 0}
+--- !u!114 &287513208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287513204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6983a9099a334d4aad85653e83c88db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraComponent: {fileID: 287513206}
+  cameraTransform: {fileID: 287513207}
+  doAnim: 0
 --- !u!1 &293678777
 GameObject:
   m_ObjectHideFlags: 0
@@ -20158,6 +20174,7 @@ MonoBehaviour:
   board: {fileID: 1410703585}
   isRouletteAction: 0
   RussianRouletteAction: {fileID: 1561157185}
+  roundAnim: {fileID: 287513208}
   die_text: {fileID: 405693241820399752, guid: f25007c2be06d8a438b9b5f39a2c15a2, type: 3}
   round: 0
   user_name: 

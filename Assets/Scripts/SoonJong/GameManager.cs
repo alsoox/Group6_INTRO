@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Board board;
     public bool isRouletteAction;
     public RussianRoulette RussianRouletteAction;
+    public RoundAnim roundAnim; // RoundAnim 참조
     public GameObject die_text;
     private GameObject currentdie_text;
     public int round = 1;
@@ -85,10 +86,6 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log($"{round}stage 클리어!! {health}명생존!!");
                 RoundClear();
-                if (round == 4)
-                {
-                    SceneManager.LoadScene("CreditScene");
-                }
             }
         }
 
@@ -174,7 +171,12 @@ public class GameManager : MonoBehaviour
         }
         else if (round == 4) //게임 클리어시(count, 생존여부 초기화)
         {
-            GameEnd();
+            Debug.Log("4라운드로 왔습니다");
+
+            roundAnim.TurnCameraAnimation();
+            Debug.Log("TurnCameraAnimation이 실행됨");
+            Invoke("GameEnd", 5f);
+            //WaitForCameraAnimationAndLoadScene();
         }
 
         else if (true)
@@ -193,14 +195,32 @@ public class GameManager : MonoBehaviour
         Score();
         Debug.Log($"GameOver : score : {score} 산사람 :{health} 매칭수 : {matchingCount}");
 
+        // 애니메이션 완료 후 크레딧 씬 로드
         SceneManager.LoadScene("CreditScene");
 
+        // 게임 초기화
         isLive = Enumerable.Repeat(true, isLive.Length).ToArray();
         count = 5;
         health = 5;
         score = 0;
         matchingCount = 0;
     }
+
+    private IEnumerator WaitForCameraAnimationAndLoadScene()
+    {
+        Debug.Log("기다려");
+        while (roundAnim.doAnim)
+        {
+            yield return null;  // doAnim이 false가 될 때까지 대기
+            Debug.Log("카메라 애니메이션중");
+        }
+        // 애니메이션 완료 후 크레딧 씬 로드
+        Debug.Log("크레딧 씬 떠야됨");
+        SceneManager.LoadScene("CreditScene");
+    }
+
+
+
     private void DestroyCanvas()
     {
         Destroy(currentdie_text); // 캔버스 파괴
