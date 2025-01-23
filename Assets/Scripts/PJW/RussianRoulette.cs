@@ -140,10 +140,11 @@ public class RussianRoulette : MonoBehaviour
         yield return fovMove;
         yield return camPosMove;
 
-        // 총 테이블로 원위치
-        yield return StartCoroutine(GunReturnToTable());
-        // 라이트 멋지게 퇴장
-        yield return StartCoroutine(CoroutineLightColorFade(m_light, m_light.color.r, 0f));
+        // 총 테이블로 원위치 & 라이트 멋지게 퇴장
+        var gunMove = StartCoroutine(GunReturnToTable());
+        var lightFade = StartCoroutine(CoroutineLightColorFade(m_light, m_light.color.r, 0f));
+        yield return gunMove;
+        yield return lightFade;
         m_light.gameObject.SetActive(false);
         
         // 행동 시작할 때는 해당 코루틴 다시 실행 안되게 하기 위해 bool값 멤버변수로 저장
@@ -186,7 +187,7 @@ public class RussianRoulette : MonoBehaviour
     //라이트 애니메이션
     private IEnumerator CoroutineLightColorFade(Light _light, float _start, float _end)
     {
-        float duration = 2f; // 변환 시간
+        float duration = 1f; // 변환 시간
         float timeElapsed = 0f;
 
         float between = _start - _end;
