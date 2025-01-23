@@ -180,9 +180,10 @@ public class Board : MonoBehaviour
             {
                 card.SetActive(false);
                 nowCardGroup.SetActive(false);
-
-                cards = null;
-                targetPositions = null;
+                if (cards != null)
+                    cards = null;
+                if(targetPositions!=null)
+                    targetPositions = null;
             }
         }
 
