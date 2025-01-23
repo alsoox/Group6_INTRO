@@ -12,16 +12,15 @@ public class Buttonmanager : MonoBehaviour
     public GameObject Rank_Board;
     public GamestartControll GameStartcontroll;
     public GameObject boardObject;
+    public GameObject input_name;
+    public InputField playerNameInput;
+    private string playerName = null;
+
     public void GameStart()//게임씬 이동
     {
-        //SceneManager.LoadScene("GameScene");
-        GameStartcontroll.StartGame();
-        Board board = boardObject.GetComponent<Board>();
-        if (GameManager.Instance.round < 3)
-        {
-            GameManager.Instance.round++;  // round 값 증가
-            board.RandomCards(GameManager.Instance.round); // 증가된 round 값을 넘겨줌
-        }
+        input_name.SetActive(true);
+        playerNameInput.onEndEdit.AddListener(OnNameEntered);
+        //여기까지가 이름입력   
     }
 
     public void CreditBtn()//크레딧씬 이동
@@ -41,5 +40,46 @@ public class Buttonmanager : MonoBehaviour
 #else
         Application.Quit():
 #endif
+    }
+
+    public void get_name()
+    {
+        // playerName을 GameManager의 user_name에 저장
+        playerName = playerNameInput.text;
+        GameManager.Instance.user_name = playerName;
+        input_name.SetActive(false);
+
+        goto_GameStart();
+    }
+    private void OnNameEntered(string text)
+    {
+        // 텍스트가 입력되었을 때 playerName에 저장
+        if (text.Length > 0&&text.Length<6)
+        {
+            get_name();
+        }
+        else
+        {
+            GameObject alert = input_name.transform.Find("Alert").gameObject; // alert는 input_name의 자식 객체로 가정
+            alert.SetActive(true);
+            StartCoroutine(HideAlertAfterDelay(alert));
+        }
+
+
+    }
+    private IEnumerator HideAlertAfterDelay(GameObject alert)
+    {
+        yield return new WaitForSeconds(1f); // 2초 후
+        alert.SetActive(false);
+    }
+    public void goto_GameStart()
+    {
+        GameStartcontroll.StartGame();
+        Board board = boardObject.GetComponent<Board>();
+        if (GameManager.Instance.round < 3)
+        {
+            GameManager.Instance.round++;  // round 값 증가
+            board.RandomCards(GameManager.Instance.round); // 증가된 round 값을 넘겨줌
+        }
     }
 }

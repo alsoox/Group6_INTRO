@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject die_text;
     private GameObject currentdie_text;
     public int round = 1;
+    public string user_name="default";
     public bool[] isLive = new bool[5] { true, true, true, true, true};
     //jhn : 0 / kds : 1 / ksj : 2 / /shc : 3 / pjw : 4
 
