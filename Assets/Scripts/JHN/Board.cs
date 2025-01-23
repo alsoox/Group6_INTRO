@@ -24,7 +24,7 @@ public class Board : MonoBehaviour
         //RandomCards(round);
     }
 
-    private IEnumerator AnimateCardsToPosition()    //카드 애니메이션
+    private IEnumerator AnimateCardsToPosition()    // 카드 애니메이션
     {
         float moveDuration = 0.1f; // 이동 시간
         float timeElapsed;
@@ -33,19 +33,33 @@ public class Board : MonoBehaviour
         for (int i = 0; i < cards.Length; i++)
         {
             Transform cardTransform = cards[i].transform;
-            Vector3 startPosition = cardTransform.position;
-            Vector3 targetPosition = targetPositions[i];
+
+            // Local Position 사용
+            Vector3 startPosition = new Vector3(0f, 1.21000004f, -0.5f);
+            Vector3 targetPosition = cardTransform.parent.InverseTransformPoint(targetPositions[i]);
+            // targetPositions[i]를 로컬 좌표로 변환
 
             timeElapsed = 0;
             while (timeElapsed < moveDuration)
             {
-                cardTransform.position = Vector3.Lerp(startPosition, targetPosition, timeElapsed / moveDuration);   // 선형보간
+                // X, Y 값만 Lerp로 보간
+                float t = timeElapsed / moveDuration;
+                float newX = Mathf.Lerp(startPosition.x, targetPosition.x, t);
+                float newY = Mathf.Lerp(startPosition.y, targetPosition.y, t);
+
+                // Z 값은 기존 값을 유지
+                cardTransform.localPosition = new Vector3(newX, newY, 0f); // 로컬 좌표로 적용
+
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
-            cardTransform.position = targetPosition; // (Lerp썼기 때문에)원래 위치로 설정
+
+            // 애니메이션 완료 후 정확한 위치로 설정
+            cardTransform.localPosition = targetPosition;
         }
     }
+
+
     public void RandomCards(int curRound)
     {
         if (curRound == 1)
