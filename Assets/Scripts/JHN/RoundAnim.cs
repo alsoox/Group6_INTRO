@@ -15,6 +15,10 @@ public class RoundAnim : MonoBehaviour
     private float initialOrthographicSize;
     private Quaternion initialRotation;
 
+    public void Start(){
+        GameManager.Instance.roundAnim = this;
+    }
+
     public void TurnCameraAnimation()
     {
         // ¿ø·¡

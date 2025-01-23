@@ -19,9 +19,8 @@ public class Board : MonoBehaviour
 
     private int[] arr;
 
-    void Start()
-    {
-        //RandomCards(round);
+    public void Start(){
+        GameManager.Instance.board = this;
     }
 
     private IEnumerator AnimateCardsToPosition()    // 카드 애니메이션

@@ -21,7 +21,9 @@ public class RussianRoulette : MonoBehaviour
     // ÃÍ ½ò¶§ ¸Á¼³ÀÌ´Â °Í
     public bool m_isHesitate = true;
 
-
+    public void Start(){
+        GameManager.Instance.RussianRouletteAction = this;
+    }
     public void OnClick1PlayerKill(bool _isShoot){
         StartCoroutine(CoroutineRussianRoulette(_isShoot, 0));
     }
