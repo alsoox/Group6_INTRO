@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public RoundAnim roundAnim; // RoundAnim 참조
     public GameObject die_text;
     private GameObject currentdie_text;
+    public Rankborad rankborad;
     public int round = 1;
     public string user_name="default";
     public bool[] isLive = new bool[5] { true, true, true, true, true};
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     int count = 5; // 
     int health = 5; // 살아있는 사람 수
-    int totalChance = 6; // 러시안룰렛 기회
+    int totalChance = 1; // 러시안룰렛 기회
     int matchingCount = 0; //매칭성공수
     int score = 0; // 전체점수
 
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
+        rankborad.RankboradInitialize();
     }
   
     void Update()
@@ -131,8 +133,7 @@ public class GameManager : MonoBehaviour
 
         if (health == 0)
         {
-            Invoke("GameOver", 6f);
-            GameEnd();
+            Invoke("GameEnd", 6f);
         }
 
         Debug.Log($"총알남은수{totalChance}");
@@ -145,7 +146,7 @@ public class GameManager : MonoBehaviour
         if (Random.Range(0, totalChance) == 0) // 격발 성공
         {
             health--;
-            totalChance = 6;//격발시 총알 횟수 초기화
+            totalChance = 1;//격발시 총알 횟수 초기화
 
             //user 죽이기(폭탄 제외한 카드에 해당하는 user 죽이기)
             isLive[index] = false;
@@ -158,6 +159,12 @@ public class GameManager : MonoBehaviour
             totalChance--; // 격발 실패 시 총알감소
             RussianRouletteAction.ShootAction(false, index);
         }
+    }
+
+    public void RoundInitialize()  //round 초기화
+    {
+        board.RoundInitialize();
+        round = 0;
     }
 
     public void RoundClear()
@@ -194,7 +201,7 @@ public class GameManager : MonoBehaviour
     {
         Score();
         Debug.Log($"GameOver : score : {score} 산사람 :{health} 매칭수 : {matchingCount}");
-
+        rankborad.AddNewPlayerScore(user_name, score);
         // 애니메이션 완료 후 크레딧 씬 로드
         SceneManager.LoadScene("CreditScene");
 
@@ -204,6 +211,18 @@ public class GameManager : MonoBehaviour
         health = 5;
         score = 0;
         matchingCount = 0;
+        round = 0;
+    }
+
+    public void GameInit()
+    {
+        // 게임 초기화
+        isLive = Enumerable.Repeat(true, isLive.Length).ToArray();
+        count = 5;
+        health = 5;
+        score = 0;
+        matchingCount = 0;
+        round = 0;
     }
 
     private IEnumerator WaitForCameraAnimationAndLoadScene()

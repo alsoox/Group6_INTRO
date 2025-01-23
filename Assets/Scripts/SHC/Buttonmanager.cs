@@ -82,4 +82,12 @@ public class Buttonmanager : MonoBehaviour
             board.RandomCards(GameManager.Instance.round); // 증가된 round 값을 넘겨줌
         }
     }
+
+    public void goto_Menu()
+    {
+        GameManager.Instance.RoundInitialize();
+        GameManager.Instance.GameInit();
+        GameStartcontroll.GoingToMenu();
+
+    }
 }

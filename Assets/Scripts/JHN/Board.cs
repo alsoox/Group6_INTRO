@@ -19,9 +19,8 @@ public class Board : MonoBehaviour
 
     private int[] arr;
 
-    void Start()
-    {
-        //RandomCards(round);
+    public void Start(){
+        GameManager.Instance.board = this;
     }
 
     private IEnumerator AnimateCardsToPosition()    // 카드 애니메이션
@@ -146,6 +145,10 @@ public class Board : MonoBehaviour
         StartCoroutine(AnimateCardsToPosition());   // 카드들의 목표 위치를 설정한 후, 애니메이션 시작
     }
 
+    public void StopCardAnim()
+    {
+        StopCoroutine(AnimateCardsToPosition());
+    }
 
     public void ClearBoard()
     {
@@ -167,5 +170,19 @@ public class Board : MonoBehaviour
 
         // 새로운 라운드 설정
         RandomCards(curRound);
+    }
+
+    public void RoundInitialize()
+    {
+        foreach (GameObject card in cardGroup)
+        {
+            if (card != null) // Null 체크
+            {
+                card.SetActive(false);
+            }
+        }
+        nowCardGroup =null;
+        cards = null;
+        targetPositions = null;
     }
 }
