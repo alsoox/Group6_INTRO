@@ -27,14 +27,7 @@ public class Rankborad : MonoBehaviour
 
     void Start()
     {
-        // JSON 파일 읽기
-        string json = File.ReadAllText(jsonFilePath);
-
-        // JSON 파싱
-        rankingList = JsonUtility.FromJson<RankingList>(json);
-
-        // UI에 랭킹 출력
-        DisplayRanking();
+        RankboradInitialize();
     }
 
     public void AddNewPlayerScore(string p_name,int p_score)
@@ -42,27 +35,35 @@ public class Rankborad : MonoBehaviour
         // 새로운 점수를 랭킹에 추가
         Ranking newPlayer = new Ranking { name = p_name, score = p_score };
         // 기존 랭킹에 추가
-        var updatedRankingList = rankingList.ranking.ToList();
-        updatedRankingList.Add(newPlayer);
-
-        // 점수 내림차순으로 정렬
-        updatedRankingList = updatedRankingList.OrderByDescending(r => r.score).ToList();
-
-        // 10명만 유지
-        if (updatedRankingList.Count > 10)
+        if (newPlayer.score > rankingList.ranking[9].score)
         {
-            updatedRankingList.RemoveAt(10);
+            Debug.Log("점수가높지요");
+            var updatedRankingList = rankingList.ranking.ToList();
+            updatedRankingList.Add(newPlayer);
+
+            // 점수 내림차순으로 정렬
+            updatedRankingList = updatedRankingList.OrderByDescending(r => r.score).ToList();
+
+            // 10명만 유지
+            if (updatedRankingList.Count > 10)
+            {
+                updatedRankingList.RemoveAt(10);
+            }
+
+            // 랭킹 리스트 갱신
+            rankingList.ranking = updatedRankingList.ToArray();
+
+            // JSON 파일에 새로운 랭킹 저장
+            string updatedJson = JsonUtility.ToJson(rankingList, true);
+            File.WriteAllText(jsonFilePath, updatedJson);
+
+            // UI에 실시간으로 순위 반영
+            DisplayRanking();
+         }
+        else
+        {
+            Debug.Log("점수가낮지요");
         }
-
-        // 랭킹 리스트 갱신
-        rankingList.ranking = updatedRankingList.ToArray();
-
-        // JSON 파일에 새로운 랭킹 저장
-        string updatedJson = JsonUtility.ToJson(rankingList, true);
-        File.WriteAllText(jsonFilePath, updatedJson);
-
-        // UI에 실시간으로 순위 반영
-        DisplayRanking();
     }
 
     void DisplayRanking()
@@ -78,5 +79,14 @@ public class Rankborad : MonoBehaviour
                 rankingTexts[i].text = (i + 1) + ". -";
             }
         }
+    }
+    public void RankboradInitialize()
+    {
+        // JSON 파일 읽기
+        string json = File.ReadAllText(jsonFilePath);
+        // JSON 파싱
+        rankingList = JsonUtility.FromJson<RankingList>(json);
+        // UI에 랭킹 출력
+        DisplayRanking();
     }
 }
