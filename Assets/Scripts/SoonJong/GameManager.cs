@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public Card firstCard; // 처음 뒤집은 카드
+    private bool isFirstCard;
     public Card secondCard; // 두번째 뒤집은 카드 
+    private bool isSecondCard;
     public Board board;
     public bool isRouletteAction;
     public RussianRoulette RussianRouletteAction;
@@ -55,7 +57,13 @@ public class GameManager : MonoBehaviour
         time += Time.deltaTime;
     }
 
-    public void Matched() // 카드 매칭 하기
+
+    public void Matched() // 카드 매칭 하기 그런데 딜레이를 추가한
+    {
+        StartCoroutine(MatchedWithDelay());
+    }
+
+    private IEnumerator MatchedWithDelay()
     {
         if (firstCard.index == secondCard.index) // 매칭 한 카드가 같을 경우
         {
@@ -83,18 +91,24 @@ public class GameManager : MonoBehaviour
 
         else if (firstCard.index != secondCard.index) // 매칭 한 카드가 다를 경우
         {
-            if (firstCard.index ==  10 || secondCard.index == 10) // 폭탄이 하나가 있으면 미니게임 진행
+            if (firstCard.index == 10 || secondCard.index == 10) // 폭탄이 하나가 있으면 미니게임 진행
             {
                 MiniGame();
             }
 
-            firstCard.CloseCard();  
+            firstCard.CloseCard();
             secondCard.CloseCard();  //뒤집은 카드 정보 초기화
+                                    
+            yield return new WaitForSeconds(0.7f);
+
         }
+
 
         firstCard = null;
         secondCard = null;
     }
+
+
 
     public void MiniGame() // 러시안 룰렛
     {

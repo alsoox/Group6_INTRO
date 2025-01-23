@@ -22,6 +22,13 @@ public class Card_Click : MonoBehaviour
         }
         else
         {
+            // 같은 카드를 두 번 클릭한 경우 무시
+            if (GameManager.Instance.firstCard == card)
+            {
+                Debug.Log("같은 카드를 두 번 클릭했음");
+                return;
+            }
+
             GameManager.Instance.secondCard = card;
             Debug.Log("secondCardClik");
             card.CardOpen();
