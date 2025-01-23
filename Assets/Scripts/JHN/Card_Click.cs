@@ -13,26 +13,28 @@ public class Card_Click : MonoBehaviour
             Debug.Log("러시안 룰렛 진행 중! 카드를 클릭할 수 없습니다.");
             return; // 함수 종료
         }
-
-        if (GameManager.Instance.firstCard == null)
+        if (!card.m_isFliping)
         {
-            GameManager.Instance.firstCard = card;
-            Debug.Log("firstCardClik");
-            card.CardOpen();
-        }
-        else
-        {
-            // 같은 카드를 두 번 클릭한 경우 무시
-            if (GameManager.Instance.firstCard == card)
+            if (GameManager.Instance.firstCard == null)
             {
-                Debug.Log("같은 카드를 두 번 클릭했음");
-                return;
+                GameManager.Instance.firstCard = card;
+                Debug.Log("firstCardClik");
+                card.CardOpen();
             }
+            else
+            {
+                // 같은 카드를 두 번 클릭한 경우 무시
+                if (GameManager.Instance.firstCard == card)
+                {
+                    Debug.Log("같은 카드를 두 번 클릭했음");
+                    return;
+                }
 
-            GameManager.Instance.secondCard = card;
-            Debug.Log("secondCardClik");
-            card.CardOpen();
-            GameManager.Instance.Matched();
+                GameManager.Instance.secondCard = card;
+                Debug.Log("secondCardClik");
+                card.CardOpen();
+                GameManager.Instance.Matched();
+            }
         }
     }
 }

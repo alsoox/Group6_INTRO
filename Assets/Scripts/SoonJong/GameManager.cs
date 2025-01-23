@@ -100,14 +100,12 @@ public class GameManager : MonoBehaviour
 
             firstCard.CloseCard();
             secondCard.CloseCard();  //뒤집은 카드 정보 초기화
-                                    
-            yield return new WaitForSeconds(0.7f);
 
         }
 
-
         firstCard = null;
         secondCard = null;
+        yield return new WaitForSeconds(0.8f);
     }
 
 
