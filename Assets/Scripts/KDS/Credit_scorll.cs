@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CreditScroll : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class CreditScroll : MonoBehaviour
             {
                 //씬체인지
                 Debug.Log("5초가 경과하여 동작을 실행합니다.");
+                SceneManager.LoadScene("MainScene");
             }
         }
     }
