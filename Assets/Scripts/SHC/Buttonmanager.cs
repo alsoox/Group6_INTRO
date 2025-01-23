@@ -10,13 +10,18 @@ public class Buttonmanager : MonoBehaviour
 {
     public Button Button;
     public GameObject Rank_Board;
-    //public Button Rankingbutton;
-    //public Button MakerButton;
-
-
+    public GamestartControll GameStartcontroll;
+    public GameObject boardObject;
     public void GameStart()//게임씬 이동
     {
-        SceneManager.LoadScene("GameScene");
+        //SceneManager.LoadScene("GameScene");
+        GameStartcontroll.StartGame();
+        Board board = boardObject.GetComponent<Board>();
+        if (GameManager.Instance.round < 3)
+        {
+            GameManager.Instance.round++;  // round 값 증가
+            board.RandomCards(GameManager.Instance.round); // 증가된 round 값을 넘겨줌
+        }
     }
 
     public void CreditBtn()//크레딧씬 이동

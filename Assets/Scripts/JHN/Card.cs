@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
+    public Text idx_text;
     public SpriteRenderer frontImage;
     Transform frontTransform;
     Transform frontTransform2;
@@ -34,6 +35,7 @@ public class Card : MonoBehaviour
         Sprite[] sprites = Resources.LoadAll<Sprite>($"Picture/{spritePrefixes[idx]}{round}");
         frontImage.sprite = sprites[1];
         FitSpriteToCard();
+        idx_text.text = idx.ToString();
     }
     public void Setting()
     {
@@ -72,7 +74,7 @@ public class Card : MonoBehaviour
 
     void DestoryCardInvoke()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void CloseCard()

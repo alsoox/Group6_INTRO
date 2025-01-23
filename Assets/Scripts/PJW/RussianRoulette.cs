@@ -11,6 +11,7 @@ public class RussianRoulette : MonoBehaviour
     public GameObject m_revolver;
     public CanvasGroup m_blood;
     public Transform m_originCameraTransform;
+    public Transform m_gameInRouletteCameraPos;
     public Transform m_originRevolverTransform;
     public Transform m_revolverCameraTransform;
     public Transform m_tempTransform;
@@ -80,7 +81,7 @@ public class RussianRoulette : MonoBehaviour
 
         // 총알이 나갔을때 안나갔을때
         if(_isShoot){
-            Debug.Log("탕");
+            SoundManager.instance.PlaySFX("fire");
             
             m_light.color = Color.red * 2f;
 
@@ -100,11 +101,12 @@ public class RussianRoulette : MonoBehaviour
             m_blood.gameObject.SetActive(false);
             m_blood.alpha = 1;
         } else {
+            SoundManager.instance.PlaySFX("fall");
             Debug.Log("찰칵..!");
             
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         person.SetBool("Scared", false);
     }
     
@@ -123,14 +125,23 @@ public class RussianRoulette : MonoBehaviour
         // 총 이동
         yield return StartCoroutine(GunMoveToPerson(_sitPosition));
         // 총 따라 카메라 이동
-        yield return StartCoroutine(CoroutineObjectMove(m_camera.gameObject, m_originCameraTransform, m_revolverCameraTransform));
-        
+        var fovMove = StartCoroutine(CoroutineFovMove(Camera.main, 15f, 60f));
+        var camPosMove = StartCoroutine(CoroutineObjectMove(m_camera.gameObject, m_originCameraTransform, m_gameInRouletteCameraPos));
+        yield return camPosMove;
+        yield return fovMove;
+
+        yield return StartCoroutine(CoroutineObjectMove(m_camera.gameObject, m_gameInRouletteCameraPos, m_revolverCameraTransform));
+
 
         yield return StartCoroutine(GunAction(_isShoot, _sitPosition));
 
 
         // 카메라 테이블로 원위치
-        yield return StartCoroutine(CoroutineObjectMove(m_camera.gameObject, m_revolverCameraTransform, m_originCameraTransform));
+        fovMove = StartCoroutine(CoroutineFovMove(Camera.main, 60f, 15f));
+        camPosMove = StartCoroutine(CoroutineObjectMove(m_camera.gameObject, m_revolverCameraTransform, m_originCameraTransform));
+        yield return fovMove;
+        yield return camPosMove;
+
         // 총 테이블로 원위치
         yield return StartCoroutine(GunReturnToTable());
         // 라이트 멋지게 퇴장
@@ -148,14 +159,30 @@ public class RussianRoulette : MonoBehaviour
         float timeElapsed = 0f;
         while (timeElapsed < moveDuration+0.1f)
         {
-            _object.transform.position = Vector3.Slerp(_startPos.position, _endPos.position, timeElapsed / moveDuration);   // 선형보간
-            _object.transform.rotation = Quaternion.Slerp(_startPos.rotation, _endPos.rotation, timeElapsed / moveDuration);   // 선형보간
+            _object.transform.position = Vector3.Lerp(_startPos.position, _endPos.position, timeElapsed / moveDuration);   // 선형보간
+            _object.transform.rotation = Quaternion.Lerp(_startPos.rotation, _endPos.rotation, timeElapsed / moveDuration);   // 선형보간
             timeElapsed += Time.deltaTime;
             yield return null;
         }
         _object.transform.position = _endPos.position;
         _object.transform.rotation = _endPos.rotation;
     }
+
+    //카드 애니메이션
+    private IEnumerator CoroutineFovMove(Camera _camera, float _start, float _end)
+    {
+        float moveDuration = 1f; // 이동 시간
+        float timeElapsed = 0f;
+        while (timeElapsed < moveDuration+0.1f)
+        {
+            _camera.fieldOfView = Mathf.Lerp(_start, _end, timeElapsed / moveDuration);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        _camera.fieldOfView = _end;
+    }
+
 
     
     //라이트 애니메이션
