@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
 
     public void Score()
     {
-        score = health * 100 + matchingCount * 25; // 남은사람 * 100 + 매칭수 * 25;
+        score = health * 100 + matchingCount * 20; // 남은사람 * 100 + 매칭수 * 25;
     }
 
 }
