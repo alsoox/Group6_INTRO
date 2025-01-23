@@ -76,10 +76,17 @@ public class Buttonmanager : MonoBehaviour
     {
         GameStartcontroll.StartGame();
         Board board = boardObject.GetComponent<Board>();
-        if (GameManager.Instance.round < 3)
-        {
-            GameManager.Instance.round++;  // round 값 증가
-            board.RandomCards(GameManager.Instance.round); // 증가된 round 값을 넘겨줌
-        }
+
+        GameManager.Instance.round = 1;  // round 값 증가
+        board.RandomCards(GameManager.Instance.round); // 증가된 round 값을 넘겨줌
+
+    }
+
+    public void goto_Menu()
+    {
+        GameManager.Instance.RoundInitialize();
+        GameManager.Instance.GameInit();
+        GameStartcontroll.GoingToMenu();
+
     }
 }

@@ -161,6 +161,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RoundInitialize()  //round 초기화
+    {
+        board.RoundInitialize();
+        round = 0;
+    }
+
     public void RoundClear()
     {
         round++;  // round 값 증가
@@ -199,6 +205,17 @@ public class GameManager : MonoBehaviour
         // 애니메이션 완료 후 크레딧 씬 로드
         SceneManager.LoadScene("CreditScene");
 
+        // 게임 초기화
+        isLive = Enumerable.Repeat(true, isLive.Length).ToArray();
+        count = 5;
+        health = 5;
+        score = 0;
+        matchingCount = 0;
+        round = 0;
+    }
+
+    public void GameInit()
+    {
         // 게임 초기화
         isLive = Enumerable.Repeat(true, isLive.Length).ToArray();
         count = 5;

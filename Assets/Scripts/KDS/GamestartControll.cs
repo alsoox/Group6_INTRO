@@ -55,6 +55,11 @@ public class GamestartControll : MonoBehaviour
         StartCoroutine(GameStartAnimation());
     }
 
+    public void GoingToMenu()
+    {
+        StartCoroutine(GoingToMenuAnimation());
+    }
+
     public IEnumerator GameStartAnimation()
     {
         float timeElapsed = 0f;
@@ -114,5 +119,63 @@ public class GamestartControll : MonoBehaviour
         mainCamera.fieldOfView = 15f;
     }
 
+    public IEnumerator GoingToMenuAnimation()
+    {
+        float timeElapsed = 0f;
+        float animationDuration = 1f; // 애니메이션 시간
+        float initialCameraFieldOfView = mainCamera.fieldOfView;
+
+        // 메뉴 버튼 초기 위치와 INTRO 텍스트 초기 위치
+        Vector3[] initialMenuPositions = new Vector3[menuButtons.Length];
+        for (int i = 0; i < menuButtons.Length; i++)
+        {
+            initialMenuPositions[i] = menuButtons[i].localPosition;
+        }
+
+        Vector3[] initialIntroPositions = new Vector3[introText.Length];
+        for (int i = 0; i < introText.Length; i++)
+        {
+            initialIntroPositions[i] = introText[i].localPosition;
+        }
+
+        while (timeElapsed < animationDuration)
+        {
+            float t = timeElapsed / animationDuration;
+
+            // 메뉴 버튼을 위로 올리기
+            for (int i = 0; i < menuButtons.Length; i++)
+            {
+                menuButtons[i].localPosition = Vector3.Lerp(initialMenuPositions[i], menuButtonsInitialPos[i], t);
+            }
+
+            // INTRO 텍스트를 아래로 내리기
+            for (int i = 0; i < introText.Length; i++)
+            {
+                introText[i].localPosition = Vector3.Lerp(initialIntroPositions[i], introTextInitialPos[i], t);
+            }
+
+            // 카메라 이동
+            mainCamera.transform.position = Vector3.Lerp(m_gameInCameraPos.position, m_gameOutCameraPos.position, t);
+            mainCamera.transform.rotation = Quaternion.Lerp(m_gameInCameraPos.rotation, m_gameOutCameraPos.rotation, t);
+            mainCamera.fieldOfView = Mathf.Lerp(initialCameraFieldOfView, CameraFinalfieldofView, t);
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // 최종적으로 모든 위치를 정확히 맞추기
+        for (int i = 0; i < menuButtons.Length; i++)
+        {
+            menuButtons[i].localPosition = menuButtonsInitialPos[i];
+        }
+        for (int i = 0; i < introText.Length; i++)
+        {
+            introText[i].localPosition = introTextInitialPos[i];
+        }
+
+        mainCamera.transform.position = m_gameOutCameraPos.position;
+        mainCamera.transform.rotation = m_gameOutCameraPos.rotation;
+        mainCamera.fieldOfView = CameraFinalfieldofView;
+    }
 
 }
