@@ -179,10 +179,12 @@ public class Board : MonoBehaviour
             if (card != null) // Null üũ
             {
                 card.SetActive(false);
+
+                nowCardGroup = null;
+                cards = null;
+                targetPositions = null;
             }
         }
-        nowCardGroup =null;
-        cards = null;
-        targetPositions = null;
+
     }
 }

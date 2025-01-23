@@ -13782,7 +13782,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1347046454}
         m_TargetAssemblyTypeName: Buttonmanager, Assembly-CSharp
-        m_MethodName: GameStart
+        m_MethodName: goto_Menu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
