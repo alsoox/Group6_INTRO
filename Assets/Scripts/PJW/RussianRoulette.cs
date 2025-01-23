@@ -186,7 +186,7 @@ public class RussianRoulette : MonoBehaviour
     //라이트 애니메이션
     private IEnumerator CoroutineLightColorFade(Light _light, float _start, float _end)
     {
-        float duration = 2f; // 변환 시간
+        float duration = 1f; // 변환 시간
         float timeElapsed = 0f;
 
         float between = _start - _end;

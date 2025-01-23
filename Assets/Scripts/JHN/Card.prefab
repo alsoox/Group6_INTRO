@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8378f16379b110d44a7ba001dcb5ac53, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -297,6 +297,7 @@ MonoBehaviour:
   idx_text: {fileID: 1765695613307863579}
   frontImage: {fileID: 3376228288892421705}
   index: 0
+  m_isFliping: 0
   m_backObj: {fileID: 1687281402481829620}
 --- !u!1 &7411515582187432820
 GameObject:
