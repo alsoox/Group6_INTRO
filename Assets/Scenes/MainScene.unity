@@ -15540,6 +15540,7 @@ MonoBehaviour:
   m_originRevolverTransform: {fileID: 936191876}
   m_revolverCameraTransform: {fileID: 901991736}
   m_tempTransform: {fileID: 820088488}
+  m_isAction: 0
   m_isHesitate: 1
 --- !u!4 &1561157186
 Transform:
@@ -19591,8 +19592,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
-  boardObject: {fileID: 1410703584}
+  board: {fileID: 1410703585}
+  isRouletteAction: 0
   RussianRouletteAction: {fileID: 1561157185}
+  die_text: {fileID: 405693241820399752, guid: f25007c2be06d8a438b9b5f39a2c15a2, type: 3}
   round: 0
   isLive: 0101010101
 --- !u!4 &1908480307
