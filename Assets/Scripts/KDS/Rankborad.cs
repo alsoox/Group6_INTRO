@@ -26,7 +26,8 @@ public class Rankborad : MonoBehaviour
     private string jsonFilePath = "Assets/Resources/JSON/Rank.json";  // JSON 파일 경로
 
     void Start()
-    {
+    { 
+        GameManager.Instance.rankborad = this;
         RankboradInitialize();
     }
 
