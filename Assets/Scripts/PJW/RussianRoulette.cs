@@ -16,7 +16,7 @@ public class RussianRoulette : MonoBehaviour
     public Transform m_revolverCameraTransform;
     public Transform m_tempTransform;
     // 뒤집는 중이라고 알림
-    private bool m_isAction = false;
+    public bool m_isAction = false;
 
     // 촐 쏠때 망설이는 것
     public bool m_isHesitate = true;
@@ -131,8 +131,6 @@ public class RussianRoulette : MonoBehaviour
         yield return fovMove;
 
         yield return StartCoroutine(CoroutineObjectMove(m_camera.gameObject, m_gameInRouletteCameraPos, m_revolverCameraTransform));
-
-
         yield return StartCoroutine(GunAction(_isShoot, _sitPosition));
 
 
