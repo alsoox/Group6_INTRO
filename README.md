@@ -85,6 +85,10 @@
 ![image](/READEME/main11.png)  
 엔딩 크리딧이나 제작자소개 클릭한 씬에서 스페이스바를 누르면 스킵됩니다.
 
+## 프레임워크 링크(Miro)
+
+https://miro.com/welcomeonboard/Q0RvMlE3aWRsMmViUUpXbUp3VDZXYTZ5eGw0aHlyS3pDaUNBU0VEZHVNR001Wnkzcjk3UmFvMDRySWJzZVM1dW5zMTdCcjBaRUZCY0dwSERpNlRjSTl4b09pWWxwTnlXZHJkRG1VRUhORFhwMTdFUzVZbElZZjdxN0NOUVhDd1EhZQ==?share_link_id=733354826133
+
 ## 리소스에 사용된 사이트
 
 바닥 재질 : https://quixel.com/megascans/home  
